@@ -1,0 +1,255 @@
+/* =========================================
+   style.css - Diseño Moderno Quinta Dalam
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+    color: #333;
+}
+
+/* --- Encabezado y Navegación --- */
+header {
+    background-color: #2e4029; /* Un verde bosque muy elegante */
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #d4af37; /* Dorado elegante al pasar el mouse */
+}
+
+/* --- Títulos Principales --- */
+h2 {
+    text-align: center;
+    color: #2e4029;
+    margin: 40px 0 20px;
+    font-size: 2em;
+}
+
+/* --- Barra de Búsqueda Flotante --- */
+.seccion-buscador {
+    max-width: 1000px;
+    margin: -30px auto 40px; /* Sube un poco para quedar sobre el diseño */
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.barra-busqueda {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Sombra suave, muy moderno */
+    gap: 15px;
+    flex-wrap: wrap; /* Para que se acomode en pantallas chicas */
+}
+
+.barra-busqueda .campo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.barra-busqueda input, .barra-busqueda select {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+}
+
+.btn-buscar {
+    background-color: #2e4029;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-buscar:hover {
+    background-color: #1f2b1c;
+}
+
+/* --- Grid de Habitaciones (Tarjetas) --- */
+.contenedor-habitaciones {
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.tarjeta {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px); /* Efecto de que la tarjeta se levanta */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.contenido-tarjeta {
+    padding: 25px;
+    text-align: center;
+}
+
+.contenido-tarjeta h3 {
+    color: #2e4029;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+.precio {
+    font-weight: bold;
+    color: #444;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.descripcion {
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* =========================================
+   ESTILOS PARA EL NUEVO DISEÑO HÉROE Y BIENVENIDA
+========================================= */
+
+/* --- Header flotante sobre la imagen --- */
+.header-flotante {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(46, 64, 41,0.5); /* Verde bosque con transparencia */
+}
+
+/* --- Sección Héroe (Imagen grande) --- */
+.seccion-heroe {
+    position: relative;
+    height: 90vh; /* Ocupa el 90% del alto de la ventana */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.seccion-heroe .imagen-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir el espacio sin deformarse */
+    z-index: 1;
+}
+
+.contenido-heroe {
+    position: relative;
+    z-index: 2; /* Para quedar encima de la imagen */
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.titulo-grande {
+    font-size: 4em; /* Letras gigantes como en el ejemplo */
+    font-weight: 800;
+    text-transform: uppercase; /* Todo en mayúsculas */
+    letter-spacing: 5px; /* Separación de letras elegante */
+    margin-bottom: 10px;
+    color: white; /* Letras blancas */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Sombra para que se lea bien */
+}
+
+.tagline-grande {
+    font-size: 1.5em;
+    font-style: italic;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+/* --- Sección Introducción  --- */
+.seccion-introduccion {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Para pantallas chicas */
+}
+
+.seccion-introduccion .contenedor-texto {
+    flex: 1;
+    min-width: 300px;
+}
+
+.titulo-bold {
+    font-size: 3em;
+    font-weight: 800;
+    color: #2e4029; /* Verde bosque elegante */
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.seccion-introduccion p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.1em;
+}
+
+.seccion-introduccion .contenedor-imagen {
+    flex: 0 0 auto; /* No dejes que se estire */
+    text-align: right;
+}
+
+.seccion-introduccion .contenedor-imagen img {
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 350px;
+}

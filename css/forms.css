@@ -1,0 +1,48 @@
+
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px; /* Bordes bien redondeados */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Sombra elegante */
+    max-width: 600px;
+    margin: 0 auto; /* Para centrar el formulario en la pantalla */
+    border: 1px solid #eaeaea;
+}
+
+label {
+    font-weight: 600;
+    display: block; /* Para que la etiqueta quede arriba del cuadro de texto */
+    margin-bottom: 8px;
+    color: #2e4029; /* Verde bosque */
+    font-size: 0.95em;
+}
+
+/* Estilo para todas las cajas de texto y el menú desplegable */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Efecto cuando haces clic en la caja de texto */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #d4af37; /* Se pone dorado elegante */
+    background-color: #fafafa;
+}
+
+textarea {
+    resize: vertical; /* Solo deja hacer más alto el cuadro, no más ancho */
+}

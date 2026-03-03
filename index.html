@@ -1,48 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Quintana Dalam</title>
+    <title>Hotel Quinta Dalam | Inicio</title>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    
 </head>
 <body>
-    <center>
-        <h1>Hotel Quinta Dalam </h1>
-        <h3>Vive la magia de Michoacán</h3>
-        <hr> 
-    </center>
 
-    <h2>Bienvenidos</h2>
-    <p>
-        Descubre el encanto de nuestros pueblos mágicos sin salir de tu habitación. 
-        En Quinta Dalam, cada rincón está inspirado en la riqueza cultural de nuestra tierra.
-    </p>
+    <header class="header-flotante">
+        <div class="logo-titulo">
+            <h1>Hotel Quinta Dalam</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="mision.html">Misión</a></li>
+                <li><a href="vision.html">Visión</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="contacto.html">Contacto</a></li> 
+            </ul>
+        </nav>
+    </header>
 
-    <center>
-        <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxVvcHK4cJ2F88JpZn5G6xatu8sJR5HIoruQ&s" 
-        alt="Hotel fachada" width="250">
-    </center>
+    <section class="seccion-heroe">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxVvcHK4cJ2F88JpZn5G6xatu8sJR5HIoruQ&s" alt="Fachada espectacular del Hotel Quinta Dalam" class="imagen-fondo">
+        <div class="contenido-heroe">
+            <h1 class="titulo-grande">Hotel Quinta Dalam</h1>
+            <p class="tagline-grande">Vive la magia de Michoacán</p>
+        </div>
+    </section>
 
-    <ul>
-        <li><a href="mision.html">Misión</a></li>
-        <li><a href="vision.html">Visión</a></li>
-        <li><a href="contacto.html">Contacto</a></li> 
-        <li><a href="catalogo.html">Catalogo</a></li> 
-    </ul>
-<!---Footer para info de contacto-->
-    <footer align="center" id="contacto"> 
-        <div class="info-contacto">
-            <h3>Contáctanos</h3>
-            <p>Coeneo, Michoacán</p>
+    <main>
+        <section class="seccion-introduccion">
+            <div class="contenedor-texto">
+                <h2 class="titulo-bold">Bienvenidos</h2>
+                <p>
+                    Descubre el encanto de nuestros pueblos mágicos sin salir de tu habitación. 
+                    En Quinta Dalam, cada rincón está inspirado en la riqueza cultural de nuestra tierra.
+                </p>
+            </div>
+            <div class="contenedor-imagen">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxVvcHK4cJ2F88JpZn5G6xatu8sJR5HIoruQ&s" 
+                     alt="Detalle del Hotel Quinta Dalam">
+            </div>
+        </section>
+
+        <section class="seccion-buscador">
+            <form class="barra-busqueda">
+                <div class="campo">
+                    <label>Buscar:</label>
+                    <input type="text" placeholder="Ejemplo: Coeneo...">
+                </div>
+                <div class="campo">
+                    <label>Entrada:</label>
+                    <input type="date">
+                </div>
+                <div class="campo">
+                    <label>Salida:</label>
+                    <input type="date">
+                </div>
+                <div class="campo">
+                    <label>Tipo:</label>
+                    <select>
+                        <option>Todos</option>
+                        <option>Sencilla</option>
+                        <option>Doble</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-buscar">Buscar Disponibilidad</button>
+            </form>
+        </section>
+
+        <section id="habitaciones" class="contenedor-habitaciones">
+            <article class="tarjeta">
+                <img src="https://via.placeholder.com/350x200/e0e0e0/555555?text=Foto+Habitacion" alt="Suite Pátzcuaro">
+                <div class="contenido-tarjeta">
+                    <h3>Suite Pátzcuaro</h3>
+                    <p class="precio">$1,500 / Noche</p>
+                    <p class="descripcion">Decoración rústica y elegante, ideal para un descanso profundo.</p>
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <img src="https://via.placeholder.com/350x200/e0e0e0/555555?text=Foto+Habitacion" alt="Habitación Quiroga">
+                <div class="contenido-tarjeta">
+                    <h3>Habitación Quiroga</h3>
+                    <p class="precio">$1,200 / Noche</p>
+                    <p class="descripcion">Amplia y luminosa, con hermosa vista a los jardines principales.</p>
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <img src="https://via.placeholder.com/350x200/e0e0e0/555555?text=Foto+Habitacion" alt="Cabaña Zirahuén">
+                <div class="contenido-tarjeta">
+                    <h3>Cabaña Zirahuén</h3>
+                    <p class="precio">$1,800 / Noche</p>
+                    <p class="descripcion">Privacidad total con detalles en madera fina y un ambiente acogedor.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer id="contacto"> 
+        <div class="info-contacto" style="margin-bottom: 10px;">
+            <h3 style="color: white; margin-bottom: 5px; text-align: center;">Contáctanos</h3>
+            <p style="text-align: center;">Coeneo, Michoacán</p>
         </div>
         
-        <div class="redes-sociales">
-            <a href="https://www.facebook.com/profile.php?id=61584681841684" target="_blank">Facebook</a> |
-            <a href="https://www.instagram.com/quintadalam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a> |
-            <a href="https://www.tiktok.com/@quintadalam?lang=es" target="_blank">TikTok</a>
+        <div class="redes-sociales" style="margin-bottom: 15px; text-align: center;">
+            <a href="https://www.facebook.com/profile.php?id=61584681841684" target="_blank" style="color: #d4af37; text-decoration: none; margin: 0 10px;">Facebook</a> |
+            <a href="https://www.instagram.com/quintadalam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="color: #d4af37; text-decoration: none; margin: 0 10px;">Instagram</a> |
+            <a href="https://www.tiktok.com/@quintadalam?lang=es" target="_blank" style="color: #d4af37; text-decoration: none; margin: 0 10px;">TikTok</a>
         </div>
         
-        <p class="copyright">© 2026 Hotel Quinta Dalam. Todos los derechos reservados.</p>
+        <p class="copyright" style="font-size: 0.8em; color: #ccc; text-align: center;">© 2026 Hotel Quinta Dalam. Todos los derechos reservados.</p>
     </footer>
+
 </body>
 </html>

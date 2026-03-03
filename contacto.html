@@ -1,66 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto Quinta Dalam</title>
+    <title>Contacto | Quinta Dalam</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/TU-USUARIO/TU-REPOSITORIO/main/forms.css">
 </head>
 <body>
-    <h1>Contacto Quinta Dalam</h1>
-    <p>
-        <a href="index.html">Regresar al Inicio</a> 
-    </p>
-    <hr>
-    <center>
-        <h1>Contáctanos</h1>
-        <p>¿Tienes dudas sobre tu reservación en Quinta Dalam, o quieres hacer una? Escríbenos.</p>
-    </center>
-    
-    <h3>Ubicación</h3>
-    <ul>
-        <li><strong>Dirección:</strong> Coeneo, Michoacán.</li>
-        <li><strong>Teléfono:</strong> 1234567890</li>
-        <li><strong>Correo:</strong> reservaciones@quintadalam.com</li>
-    </ul><hr>
 
-    <center>
-        <h3>Envíanos un Mensaje</h3>
+    <header>
+        <div class="logo-titulo">
+            <h1>Hotel Quinta Dalam</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="mision.html">Misión</a></li>
+                <li><a href="vision.html">Visión</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 900px; margin: 40px auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; padding: 0 20px;">
         
-        <form action="#" method="post">
-            <label for="nombre">Nombre Completo:</label><br>
-            <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" size="40" required>
+        <section style="flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+            <h2 style="text-align: left; color: #2e4029; margin-bottom: 10px;">Ponte en contacto</h2>
+            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">¿Tienes dudas sobre tu reservación en Quinta Dalam, o quieres hacer una? Escríbenos y te responderemos lo más pronto posible.</p>
             
-            <br><br>
+            <h3 style="color: #444; margin-bottom: 15px; font-size: 1.2em;">Ubicación</h3>
+            <ul style="list-style: none; color: #555; line-height: 2; margin-bottom: 20px; margin-left: 0;">
+                <li>📍 <strong>Dirección:</strong> Coeneo, Michoacán.</li>
+                <li>📞 <strong>Teléfono:</strong> 123 456 7890</li>
+                <li>✉️ <strong>Correo:</strong> reservaciones@quintadalam.com</li>
+            </ul>
 
-            <label for="correo">Correo Electrónico:</label><br>
-            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" size="40" required>
+            <img src="https://via.placeholder.com/400x200/e0e0e0/555555?text=Mapa+de+Coeneo+Michoacan" alt="Mapa de ubicación de Coeneo" style="width: 100%; border-radius: 10px; border: 1px solid #ddd;">
+        </section>
 
-            <br><br>
+        <section style="flex: 1; min-width: 300px;">
+            <form action="#" method="post" style="margin: 0; max-width: 100%;">
+                <h3 style="text-align: center; color: #2e4029; margin-bottom: 25px;">Envíanos un Mensaje</h3>
+                
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+                
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
 
-            <label for="asunto">Motivo:</label><br>
-            <select id="asunto" name="asunto">
-                <option value="reservacion">Hacer una reservación</option>
-                <option value="duda">Información general</option>
-                <option value="eventos">Eventos especiales</option>
-            </select>
+                <label for="asunto">Motivo:</label>
+                <select id="asunto" name="asunto">
+                    <option value="reservacion">Hacer una reservación</option>
+                    <option value="duda">Información general</option>
+                    <option value="eventos">Eventos especiales</option>
+                </select>
 
-            <br><br>
+                <label for="mensaje">Tu Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe aquí tus dudas..."></textarea>
 
-            <label for="mensaje">Tu Mensaje:</label><br>
-            <textarea id="mensaje" name="mensaje" rows="5" cols="40" placeholder="Escribe aquí tus dudas..."></textarea>
+                <div style="display: flex; gap: 15px; margin-top: 15px;">
+                    <button type="submit" class="btn-buscar" style="flex: 1;">Enviar Mensaje</button>
+                    <button type="reset" class="btn-buscar" style="flex: 1; background-color: #888;">Borrar todo</button>
+                </div>
+            </form>
+        </section>
 
-            <br><br>
+    </main>
 
-            <input type="submit" value="Enviar Mensaje">
-            <input type="reset" value="Borrar todo">
-        </form>
-    </center>
+    <footer style="text-align: center; background-color: #2e4029; color: white; padding: 20px; margin-top: 20px;">
+        <p style="margin-bottom: 10px;">Horario de atención: Lunes a Domingo, 24 hrs.</p>
+        <p class="copyright" style="font-size: 0.8em; color: #ccc;">© 2026 Hotel Quinta Dalam. Todos los derechos reservados.</p>
+    </footer>
 
-    <br>
-    <hr>
-    
-    <center>
-        <small>Horario de atención: Lunes a Domingo, 24 hrs.</small>
-    </center>
 </body>
 </html>

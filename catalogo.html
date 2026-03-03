@@ -1,71 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Catálogo de Habitaciones</title>
+    <title>Catálogo de Habitaciones | Quinta Dalam</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1 align="center"> Catalogo de Habitaciones </h1>
-    <hr>
-    <br>
-    
-    <table border="1" width="90%" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-            <td width="40%" align="center">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAdG2CazjXjZk75x1liXktIy40R9GbzRzvNg&s" alt="Habitación 1" width="100%">
-            </td>
-            <td width="60%" valign="top">
-                <h2>Suite "Tzintzunzan"</h2>
-                <p><b>Descripción:</b> Inspirada en el tradicional pueblo de Tzintzunzan, tan emblematica como sus Yacatas. </p>
-                <p><b>Precio:</b> $1,500 MXN </p>
-                <p><b>Incluye:</b></p>
-                <ul>
-                    <li>Cama King Size</li>
-                    <li>Balcón con vista</li>
-                </ul>
-                <button>Reservar ahora</button>
-            </td>
-        </tr>
 
-        <tr>
-            <td width="40%" align="center">
-                <img src="https://image-tc.galaxy.tf/wijpeg-39q0ohdze5lzfn7q47k4cyd7v/morelia-1920x1080_standard.jpg?width=650&crop=240%2C0%2C1440%2C1080" alt="Habitación 2" width="100%">
-            </td>
-            <td width="60%" valign="top">
-                <h2>Dormitorio "Morelia"</h2>
-                <p><b>Descripción:</b> El lujo de la época colonial en el centro de Morelia. Muros de piedra y techos altos.</p>
-                <p><b>Precio:</b> $2,200 MXN</p>
-                <p><b>Incluye:</b></p>
-                <ul>
-                    <li>Jacuzzi</li>
-                    <li>Chimenea artesanal</li>
-                </ul>
-                <button>Reservar ahora</button>
-            </td>
-        </tr>
+    <header>
+        <div class="logo-titulo">
+            <h1>Hotel Quinta Dalam</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="mision.html">Misión</a></li>
+                <li><a href="vision.html">Visión</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <tr>
-            <td width="40%" align="center">
-                <img src="https://tecolotito.elsiglodetorreon.com.mx/i/2020/12/1378650.jpeg" alt="Habitación Paracho" width="100%">
-            </td>
-            <td width="60%" valign="top">
-                <h2>Habitación "Paracho"</h2>
-                <p><b>Descripción:</b> Un espacio dedicado a la música y la madera. Cuenta con acabados en pino y encino, con una acústica perfecta para descansar del ruido de la ciudad.</p>
-                <p><b>Precio:</b> $2,100 MXN / noche</p>
-                <p><b>Incluye:</b></p>
-                <ul>
-                    <li>Aislamiento acústico</li>
-                    <li>Silla mecedora de madera</li>
-                    <li>Kit de bienvenida (dulces típicos)</li>
-                </ul>
-                <button>Reservar ahora</button>
-            </td>
-        </tr>
+    <main>
+        <h2>Catálogo de Habitaciones</h2>
+        <hr style="max-width: 800px; margin: 0 auto 40px;">
+        
+        <section class="contenedor-habitaciones">
+            
+            <article class="tarjeta">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAdG2CazjXjZk75x1liXktIy40R9GbzRzvNg&s" alt="Habitación Tzintzuntzan">
+                <div class="contenido-tarjeta">
+                    <h3>Suite "Tzintzuntzan"</h3>
+                    <p class="precio">$1,500 MXN / Noche</p>
+                    <p class="descripcion">Inspirada en el tradicional pueblo de Tzintzuntzan, tan emblemática como sus Yácatas.</p>
+                    <ul style="text-align: left; margin: 15px 0 20px 20px; color: #555; font-size: 0.9em;">
+                        <li>Cama King Size</li>
+                        <li>Balcón con vista</li>
+                    </ul>
+                    <button class="btn-buscar" style="width: 100%;">Reservar ahora</button>
+                </div>
+            </article>
 
+            <article class="tarjeta">
+                <img src="https://image-tc.galaxy.tf/wijpeg-39q0ohdze5lzfn7q47k4cyd7v/morelia-1920x1080_standard.jpg?width=650&crop=240%2C0%2C1440%2C1080" alt="Habitación Morelia">
+                <div class="contenido-tarjeta">
+                    <h3>Dormitorio "Morelia"</h3>
+                    <p class="precio">$2,200 MXN / Noche</p>
+                    <p class="descripcion">El lujo de la época colonial en el centro de Morelia. Muros de piedra y techos altos.</p>
+                    <ul style="text-align: left; margin: 15px 0 20px 20px; color: #555; font-size: 0.9em;">
+                        <li>Jacuzzi</li>
+                        <li>Chimenea artesanal</li>
+                    </ul>
+                    <button class="btn-buscar" style="width: 100%;">Reservar ahora</button>
+                </div>
+            </article>
 
-    </table>
-    <br>
-    <a href="index.html">Regresar al Inicio</a>
+            <article class="tarjeta">
+                <img src="https://tecolotito.elsiglodetorreon.com.mx/i/2020/12/1378650.jpeg" alt="Habitación Paracho">
+                <div class="contenido-tarjeta">
+                    <h3>Habitación "Paracho"</h3>
+                    <p class="precio">$2,100 MXN / Noche</p>
+                    <p class="descripcion">Un espacio dedicado a la música. Acabados en pino con acústica perfecta para descansar.</p>
+                    <ul style="text-align: left; margin: 15px 0 20px 20px; color: #555; font-size: 0.9em;">
+                        <li>Aislamiento acústico</li>
+                        <li>Silla mecedora de madera</li>
+                        <li>Kit de bienvenida (dulces típicos)</li>
+                    </ul>
+                    <button class="btn-buscar" style="width: 100%;">Reservar ahora</button>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer style="text-align: center; background-color: #2e4029; color: white; padding: 20px; margin-top: 40px;"> 
+        <p class="copyright">© 2026 Hotel Quinta Dalam. Todos los derechos reservados.</p>
+    </footer>
+
 </body>
 </html>
+        
