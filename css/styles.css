@@ -241,7 +241,7 @@ h2 {
 }
 
 .seccion-introduccion .contenedor-imagen {
-    flex: 0 0 auto; /* No dejes que se estire */
+    flex: 0 0 auto; 
     text-align: right;
 }
 
