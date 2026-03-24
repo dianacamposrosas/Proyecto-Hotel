@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administración CRUD | Quinta Dalam</title>
+    <title>Administración | Quinta Dalam</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dianacamposrosas/Proyecto-Hotel@main/css/forms.css">
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -26,7 +26,7 @@
         <h2 class="page-title">Panel de Administración</h2>
         <hr class="page-divider">
         <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 30px;">
-            Gestión de inventario: Altas, bajas y modificaciones de habitaciones.
+            Gestión de inventario. Selecciona una acción para comenzar.
         </p>
 
         <form id="formAdmin" class="form" action="#" method="post">
@@ -46,27 +46,27 @@
                 </div>
             </fieldset>
 
-            <div class="form__group">
+            <div class="form__group" id="grupo-codigo" style="display: none;">
                 <label for="codigo_hab" class="form__label">Código de Habitación:</label>
                 <input type="text" id="codigo_hab" name="codigo_hab" class="form__input" placeholder="Ej. HAB-001">
                 <div id="msg-codigo" class="form__feedback"></div>
             </div>
 
-            <div class="form__group">
+            <div class="form__group" id="grupo-nombre">
                 <label for="nombre_hab" class="form__label">Nombre de la Habitación:</label>
                 <input type="text" id="nombre_hab" name="nombre_hab" class="form__input" placeholder="Ej. Suite Tzintzuntzan">
                 <div id="msg-nombre" class="form__feedback"></div>
             </div>
 
-            <div class="form__group">
+            <div class="form__group" id="grupo-precio">
                 <label for="precio_hab" class="form__label">Precio por Noche ($ MXN):</label>
                 <input type="number" id="precio_hab" name="precio_hab" class="form__input" placeholder="Ej. 1500" min="0">
                 <div id="msg-precio" class="form__feedback"></div>
             </div>
 
-            <div class="form__group">
+            <div class="form__group" id="grupo-desc">
                 <label for="desc_hab" class="form__label">Descripción y Amenidades:</label>
-                <textarea id="desc_hab" name="desc_hab" class="form__textarea" placeholder="Ingresa los detalles, jacuzzi, vista, etc..."></textarea>
+                <textarea id="desc_hab" name="desc_hab" class="form__textarea" placeholder="Ingresa los detalles..."></textarea>
                 <div id="msg-desc" class="form__feedback"></div>
             </div>
 
@@ -100,15 +100,39 @@
     <script>
         $(document).ready(function() {
             
-            // Función genérica para validar campos
+            // 1. Lógica para mostrar/ocultar campos según el tipo de movimiento
+            function ajustarFormulario() {
+                let accion = $('input[name="accion"]:checked').val();
+                
+                // Limpiamos errores visuales al cambiar de opción
+                $('.form__input, .form__textarea').removeClass('is-valid is-invalid');
+                $('.form__feedback').hide();
+
+                if (accion === 'alta') {
+                    $('#grupo-codigo').slideUp('fast'); // Se oculta porque es nueva
+                    $('#grupo-nombre, #grupo-precio, #grupo-desc').slideDown('fast');
+                } else if (accion === 'baja') {
+                    $('#grupo-codigo').slideDown('fast');
+                    $('#grupo-nombre, #grupo-precio, #grupo-desc').slideUp('fast'); // Solo ocupamos el código para borrar
+                } else if (accion === 'modificar') {
+                    $('#grupo-codigo, #grupo-nombre, #grupo-precio, #grupo-desc').slideDown('fast'); // Ocupamos todo
+                }
+            }
+
+            // Escuchar cambios en los radio buttons
+            $('input[name="accion"]').change(ajustarFormulario);
+
+            // 2. Función genérica para validar (solo si el campo está visible)
             function validarCampo(campoId, mensajeId, condicion, mensajeError) {
-                let valor = $(campoId).val().trim();
-                if(condicion(valor)) {
-                    $(campoId).removeClass('is-invalid').addClass('is-valid');
-                    $(mensajeId).removeClass('form__feedback--error').addClass('form__feedback--success').text('¡Correcto!').slideDown('fast');
-                } else {
-                    $(campoId).removeClass('is-valid').addClass('is-invalid');
-                    $(mensajeId).removeClass('form__feedback--success').addClass('form__feedback--error').text(mensajeError).slideDown('fast');
+                if ($(campoId).is(':visible')) { // Solo valida si el campo se está mostrando
+                    let valor = $(campoId).val().trim();
+                    if(condicion(valor)) {
+                        $(campoId).removeClass('is-invalid').addClass('is-valid');
+                        $(mensajeId).removeClass('form__feedback--error').addClass('form__feedback--success').text('¡Correcto!').slideDown('fast');
+                    } else {
+                        $(campoId).removeClass('is-valid').addClass('is-invalid');
+                        $(mensajeId).removeClass('form__feedback--success').addClass('form__feedback--error').text(mensajeError).slideDown('fast');
+                    }
                 }
             }
 
@@ -125,28 +149,62 @@
                 validarCampo('#precio_hab', '#msg-precio', val => val > 0, 'El precio debe ser mayor a 0.');
             });
 
-            // Evitar envío si hay errores al dar clic en Ejecutar Acción
+            // 3. Simulación de Backend al Enviar
             $('#formAdmin').submit(function(e) {
-                // Forzamos la validación de todos antes de enviar
+                e.preventDefault(); // Detiene el recargo de página
+                
+                // Forzamos la validación de todos los campos visibles
                 $('#codigo_hab, #nombre_hab, #precio_hab').trigger('input');
                 
-                if ($('.is-invalid').length > 0) {
-                    e.preventDefault(); // Detiene el envío
-                    alert("Por favor, corrige los campos marcados en rojo antes de guardar en la base de datos.");
-                } else {
-                    // Aquí iría la conexión al Backend en la siguiente unidad
-                    e.preventDefault(); 
-                    alert("¡Acción ejecutada correctamente! (Simulación Frontend)");
-                    this.reset(); // Limpia el formulario
+                // Si hay algún campo inválido Y visible, detenemos todo
+                if ($('.is-invalid:visible').length > 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Por favor, corrige los campos marcados en rojo.',
+                        confirmButtonColor: '#2e4029'
+                    });
+                    return; // Corta la ejecución aquí
+                }
+
+                // Recopilamos datos para simular la acción
+                let accion = $('input[name="accion"]:checked').val();
+                let nombre = $('#nombre_hab').val();
+                let codigo = $('#codigo_hab').val();
+                let precio = $('#precio_hab').val();
+
+                let mensajeExito = '';
+
+                if (accion === 'alta') {
+                    mensajeExito = `La habitación <b>${nombre}</b> ha sido agregada al inventario con un precio de $${precio}.`;
+                } else if (accion === 'baja') {
+                    mensajeExito = `La habitación con código <b>${codigo}</b> ha sido eliminada del sistema permanentemente.`;
+                } else if (accion === 'modificar') {
+                    mensajeExito = `Los datos de la habitación <b>${codigo}</b> han sido actualizados con éxito.`;
+                }
+
+                // Usamos SweetAlert2 para un mensaje de éxito muy profesional
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Acción Ejecutada!',
+                    html: mensajeExito,
+                    confirmButtonColor: '#2e4029'
+                }).then(() => {
+                    // Limpiamos el formulario después de dar "OK"
+                    $('#formAdmin')[0].reset();
                     $('.form__input, .form__textarea').removeClass('is-valid is-invalid');
                     $('.form__feedback').hide();
-                }
+                    ajustarFormulario(); // Regresa a la vista por defecto (Alta)
+                });
             });
 
-            // Limpiar clases visuales al dar clic en el botón Reset
+            // Limpiar clases al dar clic en Reset
             $('button[type="reset"]').click(function() {
-                $('.form__input, .form__textarea').removeClass('is-valid is-invalid');
-                $('.form__feedback').hide();
+                setTimeout(() => { // Pequeño retraso para que el DOM limpie primero
+                    $('.form__input, .form__textarea').removeClass('is-valid is-invalid');
+                    $('.form__feedback').hide();
+                    ajustarFormulario();
+                }, 50);
             });
         });
     </script>
