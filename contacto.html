@@ -5,77 +5,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Quinta Dalam</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!--<link rel="stylesheet" href="https://raw.githubusercontent.com/dianacamposrosas/Proyecto-Hotel/refs/heads/main/css/forms.css">-->
+     <!--<link rel="stylesheet" href="css/forms.css">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dianacamposrosas/Proyecto-Hotel@main/css/forms.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
-    <header>
-        <div class="logo-titulo">
-            <h1>Hotel Quinta Dalam</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="mision.html">Misión</a></li>
-                <li><a href="vision.html">Visión</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
+    <header class="header header--internal">
+        <div class="header__logo"><span>Quinta Dalam</span></div>
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li><a href="index.html" class="header__nav-link">Inicio</a></li>
+                <li><a href="mision.html" class="header__nav-link">Misión</a></li>
+                <li><a href="vision.html" class="header__nav-link">Visión</a></li>
+                <li><a href="catalogo.html" class="header__nav-link">Catálogo</a></li>
             </ul>
         </nav>
     </header>
 
-    <main style="max-width: 900px; margin: 40px auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; padding: 0 20px;">
+    <main class="contact-layout">
         
-        <div style="flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
-            <h2 style="text-align: left; color: #2e4029; margin-bottom: 10px;">Ponte en contacto</h2>
-            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">¿Tienes dudas sobre tu reservación en Quinta Dalam, o quieres hacer una? Escríbenos y te responderemos lo más pronto posible.</p>
+        <div class="contact-info">
+            <h2 class="page-title" style="text-align: left; font-size: 2rem;">Ponte en contacto</h2>
+            <p style="color: var(--color-text-muted);">¿Tienes dudas sobre tu reservación en Quinta Dalam, o quieres hacer una? Escríbenos y te responderemos lo más pronto posible.</p>
             
-            <h3 style="color: #444; margin-bottom: 15px; font-size: 1.2em;">Ubicación</h3>
-            <ul style="list-style: none; color: #555; line-height: 2; margin-bottom: 20px; margin-left: 0;">
-                <li>📍 <strong>Dirección:</strong> Coeneo, Michoacán.</li>
-                <li>📞 <strong>Teléfono:</strong> 123 456 7890</li>
-                <li>✉️ <strong>Correo:</strong> reservaciones@quintadalam.com</li>
+            <ul class="contact-info__list">
+                <li><strong>Dirección:</strong> Coeneo, Michoacán.</li>
+                <li><strong>Teléfono:</strong> +52 123 456 7890</li>
+                <li><strong>Correo:</strong> reservaciones@quintadalam.com</li>
             </ul>
 
-            <img src="https://via.placeholder.com/400x200/e0e0e0/555555?text=Mapa+de+Coeneo+Michoacan" alt="Mapa de ubicación de Coeneo" style="width: 100%; border-radius: 10px; border: 1px solid #ddd;">
+            <div class="accordion">
+                <div class="accordion__item">
+                    <button class="accordion__header">¿Llegas desde el Aeropuerto?</button>
+                    <div class="accordion__content">
+                        <p>El Aeropuerto Internacional de Morelia se encuentra a 2 horas y 15 minutos en auto de Coeneo. Ofrecemos servicio de transporte privado.</p>
+                    </div>
+                </div>
+                <div class="accordion__item">
+                    <button class="accordion__header">¿Llegas en Autobús?</button>
+                    <div class="accordion__content">
+                        <p>La terminal más cercana está a 15 minutos. Puedes tomar un taxi seguro directo al hotel.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div style="flex: 1; min-width: 300px;">
-            <form action="#" method="post" style="margin: 0; max-width: 100%;">
-                <h2 style="text-align: center; color: #2e4029; margin-bottom: 25px;">Envíanos un Mensaje</h2>
+        <div class="form-container">
+            <form id="formularioContacto" class="form" action="#" method="post">
+                <h2 class="form__title page-title" style="font-size: 1.8rem;">Envíanos un Mensaje</h2>
                 
-                <label for="nombre">Nombre Completo:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+                <div class="form__group">
+                    <label for="nombre" class="form__label">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" class="form__input" placeholder="Ej. Dostin Hurtado">
+                    <div id="msg-nombre" class="form__feedback"></div>
+                </div>
                 
-                <label for="correo">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                <div class="form__group">
+                    <label for="correo" class="form__label">Correo Electrónico:</label>
+                    <input type="email" id="correo" name="correo" class="form__input" placeholder="ejemplo@correo.com">
+                    <div id="msg-correo" class="form__feedback"></div>
+                </div>
 
-                <label for="asunto">Motivo:</label>
-                <select id="asunto" name="asunto">
-                    <option value="reservacion">Hacer una reservación</option>
-                    <option value="duda">Información general</option>
-                    <option value="eventos">Eventos especiales</option>
-                </select>
+                <div class="form__group">
+                    <label for="asunto" class="form__label">Motivo:</label>
+                    <select id="asunto" name="asunto" class="form__select">
+                        <option value="reservacion">Hacer una reservación</option>
+                        <option value="duda">Información general</option>
+                    </select>
+                </div>
 
-                <label for="mensaje">Tu Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe aquí tus dudas..."></textarea>
+                <div class="form__group">
+                    <label for="mensaje" class="form__label">Tu Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" class="form__textarea" placeholder="Escribe aquí tus dudas..."></textarea>
+                </div>
 
-                <div style="display: flex; gap: 15px; margin-top: 15px;">
-                    <button type="submit" class="btn-buscar" style="flex: 1;">Enviar Mensaje</button>
-                    <button type="reset" class="btn-buscar" style="flex: 1; background-color: #888;">Borrar todo</button>
+                <div style="display: flex; gap: 15px; margin-top: 10px;">
+                    <button type="submit" class="btn btn--primary" style="flex: 1;">Enviar</button>
+                    <button type="reset" class="btn" style="flex: 1; background: #eee; color: #333;">Borrar</button>
                 </div>
             </form>
         </div>
 
     </main>
 
-    <footer style="text-align: center; background-color: #2e4029; color: white; padding: 20px; margin-top: 20px;">
-        <p style="margin-bottom: 10px;">Horario de atención: Lunes a Domingo, 24 hrs.</p>
-        <a href="https://validator.w3.org">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s" alt="Valid HTML5" height="31" width="88">
-        </a>
-        <p class="copyright" style="font-size: 0.8em; color: #ccc;">© 2026 Hotel Quinta Dalam. Todos los derechos reservados.</p>
+    <footer class="footer">
+        <div class="footer__contact">
+            <h3 class="footer__title">Quinta Dalam</h3>
+            <p>Coeneo, Michoacán, México</p>
+        </div>
+
+        <div class="footer__badges">
+            <a href="https://validator.w3.org" target="_blank" rel="noopener noreferrer">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s" alt="Valid HTML5" class="footer__badge-img">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" class="footer__badge-img">
+            </a>
+        </div>
+
+        <p class="footer__copy">
+            &copy; 2026 Hotel Quinta Dalam. Todos los derechos reservados.
+        </p>
     </footer>
 
+    <script>
+        $(document).ready(function() {
+            // Acordeón
+            $('.accordion__header').click(function() {
+                let contenido = $(this).next('.accordion__content');
+                if (contenido.css('max-height') !== '0px') {
+                    contenido.css('max-height', '0px');
+                } else {
+                    contenido.css('max-height', contenido.prop('scrollHeight') + "px");
+                } 
+            });
+
+            // Validación en tiempo real
+            $('#nombre').on('input', function() {
+                let valor = $(this).val().trim();
+                if(valor.length >= 4) {
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                    $('#msg-nombre').removeClass('form__feedback--error').addClass('form__feedback--success').text('¡Excelente!').slideDown('fast');
+                } else {
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                    $('#msg-nombre').removeClass('form__feedback--success').addClass('form__feedback--error').text('El nombre debe tener al menos 4 caracteres.').slideDown('fast');
+                }
+            });
+
+            $('#correo').on('input', function() {
+                let regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+                let valor = $(this).val().trim();
+                if(regexCorreo.test(valor)) {
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                    $('#msg-correo').removeClass('form__feedback--error').addClass('form__feedback--success').text('¡Correo válido!').slideDown('fast');
+                } else {
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                    $('#msg-correo').removeClass('form__feedback--success').addClass('form__feedback--error').text('Ingresa un correo real.').slideDown('fast');
+                }
+            });
+
+            $('#formularioContacto').submit(function(e) {
+                if ($('.is-invalid').length > 0 || $('#nombre').val() === '' || $('#correo').val() === '') {
+                    e.preventDefault();
+                    alert("Por favor, corrige los campos marcados antes de enviar.");
+                }
+            });
+        });
+    </script>
 </body>
 </html>

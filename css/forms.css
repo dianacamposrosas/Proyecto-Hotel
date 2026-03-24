@@ -1,48 +1,81 @@
+/*Forms mejorado */
 
-form {
+/* Contenedor principal del formulario */
+.form {
     background-color: #ffffff;
     padding: 30px;
-    border-radius: 15px; /* Bordes bien redondeados */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Sombra elegante */
+    border-radius: 12px; /* Bordes bien redondeados y modernos */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Sombra elegante */
     max-width: 600px;
-    margin: 0 auto; /* Para centrar el formulario en la pantalla */
+    margin: 0 auto;
     border: 1px solid #eaeaea;
 }
 
-label {
+/* Grupo de cada campo (label + input) */
+.form__group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Etiquetas */
+.form__label {
+    display: block;
     font-weight: 600;
-    display: block; /* Para que la etiqueta quede arriba del cuadro de texto */
-    margin-bottom: 8px;
     color: #2e4029; /* Verde bosque */
+    margin-bottom: 8px;
     font-size: 0.95em;
 }
 
-/* Estilo para todas las cajas de texto y el menú desplegable */
-input[type="text"],
-input[type="email"],
-input[type="number"],
-select,
-textarea {
+/* Cajas de texto y menús desplegables */
+.form__input, 
+.form__select, 
+.form__textarea {
     width: 100%;
     padding: 12px 15px;
-    margin-bottom: 20px;
     border: 2px solid #eee;
-    border-radius: 8px;
-    font-size: 1em;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-/* Efecto cuando haces clic en la caja de texto */
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-select:focus,
-textarea:focus {
-    border-color: #d4af37; /* Se pone dorado elegante */
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #333333;
     background-color: #fafafa;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-textarea {
-    resize: vertical; /* Solo deja hacer más alto el cuadro, no más ancho */
+/* Efecto cuando haces clic (Focus) */
+.form__input:focus, 
+.form__select:focus, 
+.form__textarea:focus {
+    border-color: #d4af37; /* Dorado elegante */
+    background-color: #ffffff;
 }
+
+/* Área de texto */
+.form__textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/*---  VALIDACIÓN CON JQUERY */
+.is-valid { 
+    border-color: #28a745 !important; 
+    background-color: #f8fff9 !important; 
+}
+
+.is-invalid { 
+    border-color: #dc3545 !important; 
+    background-color: #fff8f8 !important; 
+}
+
+.form__feedback { 
+    font-size: 0.85rem; 
+    padding: 5px 10px; 
+    border-radius: 4px; 
+    color: white; 
+    display: none; 
+    margin-top: 5px; 
+    width: fit-content; 
+}
+
+.form__feedback--success { background-color: #28a745; }
+.form__feedback--error { background-color: #dc3545; }

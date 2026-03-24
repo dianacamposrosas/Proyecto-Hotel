@@ -6,65 +6,149 @@
     <title>Administración CRUD | Quinta Dalam</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dianacamposrosas/Proyecto-Hotel@main/css/forms.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
-    <header>
-        <div class="logo-titulo">
-            <h1>Hotel Quinta Dalam</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+    <header class="header header--internal">
+        <div class="header__logo"><span>Quinta Dalam</span></div>
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li><a href="index.html" class="header__nav-link">Inicio</a></li>
+                <li><a href="catalogo.html" class="header__nav-link">Catálogo</a></li>
+                <li><a href="contacto.html" class="header__nav-link">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="text-align: center; color: #2e4029; margin-bottom: 10px;">Panel de Administración</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 30px;">Gestión de inventario: Altas, bajas y modificaciones de habitaciones.</p>
+    <main class="page-container form-container" style="max-width: 700px;">
+        <h2 class="page-title">Panel de Administración</h2>
+        <hr class="page-divider">
+        <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 30px;">
+            Gestión de inventario: Altas, bajas y modificaciones de habitaciones.
+        </p>
 
-        <form action="#" method="post" style="margin: 0 auto;">
+        <form id="formAdmin" class="form" action="#" method="post">
             
-            <fieldset style="border: 2px solid #eee; padding: 20px; border-radius: 8px; margin-bottom: 25px; background-color: #fafafa;">
-                <legend style="font-weight: bold; color: #2e4029; padding: 0 10px;">Tipo de Movimiento</legend>
-                <div style="display: flex; gap: 20px; margin-top: 10px; justify-content: center;">
-                    <label style="display: inline; font-weight: normal; cursor: pointer;">
+            <fieldset class="form__fieldset">
+                <legend class="form__legend">Tipo de Movimiento</legend>
+                <div class="form__radio-group">
+                    <label class="form__radio-label">
                         <input type="radio" name="accion" value="alta" checked> Alta (Nueva)
                     </label>
-                    <label style="display: inline; font-weight: normal; cursor: pointer;">
+                    <label class="form__radio-label">
                         <input type="radio" name="accion" value="modificar"> Modificar
                     </label>
-                    <label style="display: inline; font-weight: normal; cursor: pointer;">
+                    <label class="form__radio-label">
                         <input type="radio" name="accion" value="baja"> Baja (Eliminar)
                     </label>
                 </div>
             </fieldset>
 
-            <label for="codigo_hab">Código de Habitación (Requerido para modificar/eliminar):</label>
-            <input type="text" id="codigo_hab" name="codigo_hab" placeholder="Ej. HAB-001">
+            <div class="form__group">
+                <label for="codigo_hab" class="form__label">Código de Habitación:</label>
+                <input type="text" id="codigo_hab" name="codigo_hab" class="form__input" placeholder="Ej. HAB-001">
+                <div id="msg-codigo" class="form__feedback"></div>
+            </div>
 
-            <label for="nombre_hab">Nombre de la Habitación:</label>
-            <input type="text" id="nombre_hab" name="nombre_hab" placeholder="Ej. Suite Tzintzuntzan">
+            <div class="form__group">
+                <label for="nombre_hab" class="form__label">Nombre de la Habitación:</label>
+                <input type="text" id="nombre_hab" name="nombre_hab" class="form__input" placeholder="Ej. Suite Tzintzuntzan">
+                <div id="msg-nombre" class="form__feedback"></div>
+            </div>
 
-            <label for="precio_hab">Precio por Noche ($ MXN):</label>
-            <input type="number" id="precio_hab" name="precio_hab" placeholder="Ej. 1500" min="0">
+            <div class="form__group">
+                <label for="precio_hab" class="form__label">Precio por Noche ($ MXN):</label>
+                <input type="number" id="precio_hab" name="precio_hab" class="form__input" placeholder="Ej. 1500" min="0">
+                <div id="msg-precio" class="form__feedback"></div>
+            </div>
 
-            <label for="desc_hab">Descripción y Amenidades:</label>
-            <textarea id="desc_hab" name="desc_hab" rows="4" placeholder="Ingresa los detalles, si tiene jacuzzi, vista, etc..."></textarea>
+            <div class="form__group">
+                <label for="desc_hab" class="form__label">Descripción y Amenidades:</label>
+                <textarea id="desc_hab" name="desc_hab" class="form__textarea" placeholder="Ingresa los detalles, jacuzzi, vista, etc..."></textarea>
+                <div id="msg-desc" class="form__feedback"></div>
+            </div>
 
-            <div style="display: flex; gap: 15px; margin-top: 15px;">
-                <button type="submit" class="btn-buscar" style="flex: 1;">Ejecutar Acción</button>
-                <button type="reset" class="btn-buscar" style="flex: 1; background-color: #888;">Limpiar Formulario</button>
+            <div class="form__actions">
+                <button type="submit" class="btn btn--primary" style="flex: 1;">Ejecutar Acción</button>
+                <button type="reset" class="btn" style="flex: 1; background-color: #eee; color: #333;">Limpiar Formulario</button>
             </div>
         </form>
     </main>
 
-    <footer style="text-align: center; background-color: #2e4029; color: white; padding: 20px; margin-top: 40px;">
-        <p class="copyright" style="font-size: 0.8em; color: #ccc;">© 2026 Hotel Quinta Dalam. Acceso exclusivo para administradores.</p>
+    <footer class="footer">
+        <div class="footer__contact">
+            <h3 class="footer__title">Quinta Dalam</h3>
+            <p>Coeneo, Michoacán, México</p>
+        </div>
+
+        <div class="footer__badges">
+            <a href="https://validator.w3.org" target="_blank" rel="noopener noreferrer">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s" alt="Valid HTML5" class="footer__badge-img">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" class="footer__badge-img">
+            </a>
+        </div>
+
+        <p class="footer__copy">
+            &copy; 2026 Hotel Quinta Dalam. Todos los derechos reservados.
+        </p>
     </footer>
 
+    <script>
+        $(document).ready(function() {
+            
+            // Función genérica para validar campos
+            function validarCampo(campoId, mensajeId, condicion, mensajeError) {
+                let valor = $(campoId).val().trim();
+                if(condicion(valor)) {
+                    $(campoId).removeClass('is-invalid').addClass('is-valid');
+                    $(mensajeId).removeClass('form__feedback--error').addClass('form__feedback--success').text('¡Correcto!').slideDown('fast');
+                } else {
+                    $(campoId).removeClass('is-valid').addClass('is-invalid');
+                    $(mensajeId).removeClass('form__feedback--success').addClass('form__feedback--error').text(mensajeError).slideDown('fast');
+                }
+            }
+
+            // Validar al escribir
+            $('#codigo_hab').on('input', function() {
+                validarCampo('#codigo_hab', '#msg-codigo', val => val.length >= 4, 'El código debe tener al menos 4 caracteres.');
+            });
+
+            $('#nombre_hab').on('input', function() {
+                validarCampo('#nombre_hab', '#msg-nombre', val => val.length >= 3, 'El nombre es muy corto.');
+            });
+
+            $('#precio_hab').on('input', function() {
+                validarCampo('#precio_hab', '#msg-precio', val => val > 0, 'El precio debe ser mayor a 0.');
+            });
+
+            // Evitar envío si hay errores al dar clic en Ejecutar Acción
+            $('#formAdmin').submit(function(e) {
+                // Forzamos la validación de todos antes de enviar
+                $('#codigo_hab, #nombre_hab, #precio_hab').trigger('input');
+                
+                if ($('.is-invalid').length > 0) {
+                    e.preventDefault(); // Detiene el envío
+                    alert("Por favor, corrige los campos marcados en rojo antes de guardar en la base de datos.");
+                } else {
+                    // Aquí iría la conexión al Backend en la siguiente unidad
+                    e.preventDefault(); 
+                    alert("¡Acción ejecutada correctamente! (Simulación Frontend)");
+                    this.reset(); // Limpia el formulario
+                    $('.form__input, .form__textarea').removeClass('is-valid is-invalid');
+                    $('.form__feedback').hide();
+                }
+            });
+
+            // Limpiar clases visuales al dar clic en el botón Reset
+            $('button[type="reset"]').click(function() {
+                $('.form__input, .form__textarea').removeClass('is-valid is-invalid');
+                $('.form__feedback').hide();
+            });
+        });
+    </script>
 </body>
 </html>

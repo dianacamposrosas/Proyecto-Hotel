@@ -5,83 +5,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Habitaciones | Quinta Dalam</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/dianacamposrosas/Proyecto-Hotel/refs/heads/main/css/forms.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
-    <header>
-        <div class="logo-titulo">
-            <h1>Hotel Quinta Dalam</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="mision.html">Misión</a></li>
-                <li><a href="vision.html">Visión</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+    <header class="header header--internal">
+        <div class="header__logo"><span>Quinta Dalam</span></div>
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li><a href="index.html" class="header__nav-link">Inicio</a></li>
+                <li><a href="mision.html" class="header__nav-link">Misión</a></li>
+                <li><a href="vision.html" class="header__nav-link">Visión</a></li>
+                <li><a href="contacto.html" class="header__nav-link">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Catálogo de Habitaciones</h2>
-        <hr style="max-width: 800px; margin: 0 auto 40px;">
-        
-        <div class="contenedor-habitaciones">
+        <div class="page-container" style="box-shadow: none; background: transparent; padding-bottom: 20px;">
+            <h2 class="page-title">Nuestras Habitaciones</h2>
+            <hr class="page-divider" style="max-width: 150px; margin: 0 auto 30px;">
+            <p style="text-align: center; color: var(--color-text-muted); font-size: 1.1rem;">
+                Encuentra el espacio perfecto para tu descanso. Seis experiencias únicas inspiradas en Michoacán.
+            </p>
+        </div>
+
+        <div class="catalog-filters">
+            <button class="btn btn--filter active" data-filter="all">Todas</button>
+            <button class="btn btn--filter" data-filter="suite">Suites de Lujo</button>
+            <button class="btn btn--filter" data-filter="estandar">Habitaciones</button>
+            <button class="btn btn--filter" data-filter="cabana">Cabañas</button>
+        </div>
+
+        <div class="catalog-list" id="catalogoGrid">
             
-            <article class="tarjeta">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAdG2CazjXjZk75x1liXktIy40R9GbzRzvNg&s" alt="Habitación Tzintzuntzan">
-                <div class="contenido-tarjeta">
-                    <h3>Suite "Tzintzuntzan"</h3>
-                    <p class="precio">$1,500 MXN / Noche</p>
-                    <p class="descripcion">Inspirada en el tradicional pueblo de Tzintzuntzan, tan emblemática como sus Yácatas.</p>
-                    <ul style="text-align: left; margin: 15px 0 20px 20px; color: #555; font-size: 0.9em;">
+            <article class="catalog-item" data-category="suite">
+                <div class="catalog-item__img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAdG2CazjXjZk75x1liXktIy40R9GbzRzvNg&s" alt="Suite Tzintzuntzan" class="catalog-item__img">
+                </div>
+                <div class="catalog-item__content">
+                    <span class="catalog-item__tag">Suite Premium</span>
+                    <h3 class="catalog-item__title">Suite "Tzintzuntzan"</h3>
+                    <p class="catalog-item__price">$1,500 MXN / Noche</p>
+                    <p class="catalog-item__desc">Inspirada en el tradicional pueblo de Tzintzuntzan, tan emblemática como sus Yácatas. Un espacio amplio lleno de luz natural y artesanía local.</p>
+                    <ul class="catalog-item__amenities">
                         <li>Cama King Size</li>
                         <li>Balcón con vista</li>
+                        <li>Máquina de café</li>
                     </ul>
-                    <button class="btn-buscar" style="width: 100%;">Reservar ahora</button>
+                    <button class="btn btn--primary">Reservar Fechas</button>
                 </div>
             </article>
 
-            <article class="tarjeta">
-                <img src="https://image-tc.galaxy.tf/wijpeg-39q0ohdze5lzfn7q47k4cyd7v/morelia-1920x1080_standard.jpg?width=650&crop=240%2C0%2C1440%2C1080" alt="Habitación Morelia">
-                <div class="contenido-tarjeta">
-                    <h3>Dormitorio "Morelia"</h3>
-                    <p class="precio">$2,200 MXN / Noche</p>
-                    <p class="descripcion">El lujo de la época colonial en el centro de Morelia. Muros de piedra y techos altos.</p>
-                    <ul style="text-align: left; margin: 15px 0 20px 20px; color: #555; font-size: 0.9em;">
-                        <li>Jacuzzi</li>
+            <article class="catalog-item" data-category="suite">
+                <div class="catalog-item__img-wrapper">
+                    <img src="https://image-tc.galaxy.tf/wijpeg-39q0ohdze5lzfn7q47k4cyd7v/morelia-1920x1080_standard.jpg?width=650&crop=240%2C0%2C1440%2C1080" alt="Habitación Morelia" class="catalog-item__img">
+                </div>
+                <div class="catalog-item__content">
+                    <span class="catalog-item__tag">Suite Presidencial</span>
+                    <h3 class="catalog-item__title">Dormitorio "Morelia"</h3>
+                    <p class="catalog-item__price">$2,200 MXN / Noche</p>
+                    <p class="catalog-item__desc">El lujo de la época colonial en su máxima expresión. Muros de piedra tallada, techos altos y una atmósfera romántica inigualable.</p>
+                    <ul class="catalog-item__amenities">
+                        <li>Jacuzzi Privado</li>
                         <li>Chimenea artesanal</li>
+                        <li> Minibar incluido</li>
                     </ul>
-                    <button class="btn-buscar" style="width: 100%;">Reservar ahora</button>
+                    <button class="btn btn--primary">Reservar Fechas</button>
                 </div>
             </article>
 
-            <article class="tarjeta">
-                <img src="https://tecolotito.elsiglodetorreon.com.mx/i/2020/12/1378650.jpeg" alt="Habitación Paracho">
-                <div class="contenido-tarjeta">
-                    <h3>Habitación "Paracho"</h3>
-                    <p class="precio">$2,100 MXN / Noche</p>
-                    <p class="descripcion">Un espacio dedicado a la música. Acabados en pino con acústica perfecta para descansar.</p>
-                    <ul style="text-align: left; margin: 15px 0 20px 20px; color: #555; font-size: 0.9em;">
-                        <li>Aislamiento acústico</li>
-                        <li>Silla mecedora de madera</li>
-                        <li>Kit de bienvenida (dulces típicos)</li>
+            <article class="catalog-item" data-category="cabana">
+                <div class="catalog-item__img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSabEtZIM3L50Ih2EuI6zrMZ6lEgWvlsg5vgg&s" alt="Cabaña Zirahuén" class="catalog-item__img">
+                </div>
+                <div class="catalog-item__content">
+                    <span class="catalog-item__tag">Cabaña Ecológica</span>
+                    <h3 class="catalog-item__title">Cabaña "Zirahuén"</h3>
+                    <p class="catalog-item__price">$1,800 MXN / Noche</p>
+                    <p class="catalog-item__desc">Privacidad total apartada del edificio principal. Disfruta de la tranquilidad del bosque con acabados en madera fina y vistas espectaculares.</p>
+                    <ul class="catalog-item__amenities">
+                        <li>Terraza privada</li>
+                        <li>Cama Queen Size</li>
+                        <li>Fogatero exterior</li>
                     </ul>
-                    <button class="btn-buscar" style="width: 100%;">Reservar ahora</button>
+                    <button class="btn btn--primary">Reservar Fechas</button>
+                </div>
+            </article>
+
+            <article class="catalog-item" data-category="estandar">
+                <div class="catalog-item__img-wrapper">
+                    <img src="https://tecolotito.elsiglodetorreon.com.mx/i/2020/12/1378650.jpeg" alt="Habitación Paracho" class="catalog-item__img">
+                </div>
+                <div class="catalog-item__content">
+                    <span class="catalog-item__tag">Habitación Estándar</span>
+                    <h3 class="catalog-item__title">Habitación "Paracho"</h3>
+                    <p class="catalog-item__price">$1,200 MXN / Noche</p>
+                    <p class="catalog-item__desc">Un espacio dedicado a la música y la tradición. Acabados en pino con acústica perfecta, ideal para viajeros que buscan confort y cultura.</p>
+                    <ul class="catalog-item__amenities">
+                        <li>Aislamiento acústico</li>
+                        <li>Silla mecedora</li>
+                        <li>Dulces típicos</li>
+                    </ul>
+                    <button class="btn btn--primary">Reservar Fechas</button>
+                </div>
+            </article>
+
+            <article class="catalog-item" data-category="suite">
+                <div class="catalog-item__img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjoHX2nx9RRxHpMMUawe_H4FXe61twtrhPRQ&s" alt="Suite Santa Clara" class="catalog-item__img">
+                </div>
+                <div class="catalog-item__content">
+                    <span class="catalog-item__tag">Suite Premium</span>
+                    <h3 class="catalog-item__title">Suite "Pátzcuaro"</h3>
+                    <p class="catalog-item__price">$1,600 MXN / Noche</p>
+                    <p class="catalog-item__desc">Elegancia forjada en cobre. Esta suite cuenta con impresionantes detalles artesanales de Santa Clara del Cobre, desde lámparas hasta el lavabo.</p>
+                    <ul class="catalog-item__amenities">
+                        <li>Cama King Size</li>
+                        <li>Tina de cobre</li>
+                        <li>Smart TV 55"</li>
+                    </ul>
+                    <button class="btn btn--primary">Reservar Fechas</button>
+                </div>
+            </article>
+
+            <article class="catalog-item" data-category="estandar">
+                <div class="catalog-item__img-wrapper">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/e3/12/e8/parque-nacional-barranca.jpg?w=500&h=-1&s=1" alt="Habitación Uruapan" class="catalog-item__img">
+                </div>
+                <div class="catalog-item__content">
+                    <span class="catalog-item__tag">Habitación Estándar</span>
+                    <h3 class="catalog-item__title">Habitación "Uruapan"</h3>
+                    <p class="catalog-item__price">$1,100 MXN / Noche</p>
+                    <p class="catalog-item__desc">Inspirada en la capital mundial del aguacate y sus parques nacionales. Un diseño fresco, verde y lleno de vida con vistas a nuestros jardines.</p>
+                    <ul class="catalog-item__amenities">
+                        <li>Vista al jardín</li>
+                        <li>2 Camas Matrimoniales</li>
+                        <li>Ducha de lluvia</li>
+                    </ul>
+                    <button class="btn btn--primary">Reservar Fechas</button>
                 </div>
             </article>
 
         </div>
     </main>
 
-    <footer style="text-align: center; background-color: #2e4029; color: white; padding: 20px; margin-top: 40px;"> 
-        <a href="https://validator.w3.org">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s" alt="Valid HTML5" height="31" width="88">
-        </a>
-        <p class="copyright">© 2026 Hotel Quinta Dalam. Todos los derechos reservados.</p>
+    <footer class="footer">
+        <div class="footer__contact">
+            <h3 class="footer__title">Quinta Dalam</h3>
+            <p>Coeneo, Michoacán, México</p>
+        </div>
+
+        <div class="footer__badges">
+            <a href="https://validator.w3.org" target="_blank" rel="noopener noreferrer">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s" alt="Valid HTML5" class="footer__badge-img">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" class="footer__badge-img">
+            </a>
+        </div>
+
+        <p class="footer__copy">
+            &copy; 2026 Hotel Quinta Dalam. Todos los derechos reservados.
+        </p>
     </footer>
 
+    <script>
+        $(document).ready(function() {
+            $('.btn--filter').click(function() {
+                // Quitar clase activa de todos los botones y ponerla al clickeado
+                $('.btn--filter').removeClass('active');
+                $(this).addClass('active');
+
+                let filterValue = $(this).attr('data-filter');
+
+                if (filterValue === 'all') {
+                    $('.catalog-item').slideDown(400); // Muestra todas con animación
+                } else {
+                    // Oculta las que no coinciden, muestra las que sí
+                    $('.catalog-item').each(function() {
+                        if ($(this).attr('data-category') === filterValue) {
+                            $(this).slideDown(400);
+                        } else {
+                            $(this).slideUp(400);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-        

@@ -5,138 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Quinta Dalam | Inicio</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!--<link rel="stylesheet" href="css/forms.css">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dianacamposrosas/Proyecto-Hotel@main/css/forms.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
-    <header class="header-flotante">
-        <div class="logo-titulo">
-            <span style="font-size: 2em; font-weight: bold;">Hotel Quinta Dalam</span>
+    <header class="header">
+        <div class="header__logo">
+            <span>Quinta Dalam</span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="mision.html">Misión</a></li>
-                <li><a href="vision.html">Visión</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="contacto.html">Contacto</a></li> 
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li><a href="mision.html" class="header__nav-link">Misión</a></li>
+                <li><a href="vision.html" class="header__nav-link">Visión</a></li>
+                <li><a href="catalogo.html" class="header__nav-link">Catálogo</a></li>
+                <li><a href="contacto.html" class="header__nav-link">Contacto</a></li> 
             </ul>
         </nav>
     </header>
 
-    <section class="seccion-heroe">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxVvcHK4cJ2F88JpZn5G6xatu8sJR5HIoruQ&s" alt="Fachada espectacular del Hotel Quinta Dalam" class="imagen-fondo">
-
-        <div class="contenido-heroe">
-            <h1 class="titulo-grande">Hotel Quinta Dalam</h1>
-            <p class="tagline-grande">Vive la magia de Michoacán</p>
-        </div>
-    </section>
-
     <main>
-        <section class="seccion-introduccion">
-            <div class="contenedor-texto">
-                <h2 class="titulo-bold">Bienvenidos</h2>
-                <p>
-                    Descubre el encanto de nuestros pueblos mágicos sin salir de tu habitación. 
-                    En Quinta Dalam, cada rincón está inspirado en la riqueza cultural de nuestra tierra.
-                </p>
-            </div>
-            <div class="contenedor-imagen">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxVvcHK4cJ2F88JpZn5G6xatu8sJR5HIoruQ&s" 
-                     alt="Detalle del Hotel Quinta Dalam">
+        <section class="hero">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxVvcHK4cJ2F88JpZn5G6xatu8sJR5HIoruQ&s" alt="Fachada espectacular del Hotel Quinta Dalam en Michoacán" class="hero__bg">
+            <div class="hero__content">
+                <h1 class="hero__title">Quinta Dalam</h1>
+                <p class="hero__tagline">Vive la magia de Michoacán</p>
             </div>
         </section>
 
-        <div class="seccion-buscador">
-            <form class="barra-busqueda">
-                <div class="campo">
-                    <label>Buscar:</label>
-                    <input type="text" placeholder="Ejemplo: Coeneo...">
-                </div>
-                <div class="campo">
-                    <label>Entrada:</label>
-                    <input type="date">
-                </div>
-                <div class="campo">
-                    <label>Salida:</label>
-                    <input type="date">
-                </div>
-                <div class="campo">
-                    <label>Tipo:</label>
-                    <select>
-                        <option>Todos</option>
-                        <option>Sencilla</option>
-                        <option>Doble</option>
-                    </select>
-                </div>
-                <button type="button" class="btn-buscar">Buscar Disponibilidad</button>
-            </form>
-        </div>
+        <section class="booking-bar" aria-label="Búsqueda de disponibilidad">
+            <div class="booking-bar__field">
+                <label for="checkin" class="booking-bar__label">Llegada</label>
+                <input type="date" id="checkin" class="booking-bar__input" required>
+            </div>
+            <div class="booking-bar__field">
+                <label for="checkout" class="booking-bar__label">Salida</label>
+                <input type="date" id="checkout" class="booking-bar__input" required>
+            </div>
+            <div class="booking-bar__field">
+                <label for="guests" class="booking-bar__label">Huéspedes</label>
+                <select id="guests" class="booking-bar__select">
+                    <option value="1">1 Adulto</option>
+                    <option value="2" selected>2 Adultos</option>
+                    <option value="3">3 Adultos</option>
+                    <option value="4">4 Familia</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn--primary" id="btnReservaEfecto">Ver Tarifas</button>
+        </section>
 
-        <div id="habitaciones" class="contenedor-habitaciones">
-            <article class="tarjeta">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjoHX2nx9RRxHpMMUawe_H4FXe61twtrhPRQ&s" alt="Suite Pátzcuaro">
-                <div class="contenido-tarjeta">
-                    <h3>Suite Pátzcuaro</h3>
-                    <p class="precio">$1,500 / Noche</p>
-                    <p class="descripcion">Decoración rústica y elegante, ideal para un descanso profundo.</p>
-                </div>
-            </article>
+        <section class="section-rooms">
+            <h2 class="section-title">Suites & Habitaciones</h2>
+            <p class="section-subtitle">Descubre el encanto de nuestros pueblos mágicos. Cada rincón está inspirado en la riqueza cultural de nuestra tierra, ofreciendo una experiencia inigualable.</p>
 
-            <article class="tarjeta">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjoHX2nx9RRxHpMMUawe_H4FXe61twtrhPRQ&s" alt="Habitación Quiroga">
-                <div class="contenido-tarjeta">
-                    <h3>Habitación Quiroga</h3>
-                    <p class="precio">$1,200 / Noche</p>
-                    <p class="descripcion">Amplia y luminosa, con hermosa vista a los jardines principales.</p>
-                </div>
-            </article>
+            <div class="carousel">
+                <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">&#10094;</button>
+                
+                <div class="carousel__track" id="roomTrack">
+                    <article class="room-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjoHX2nx9RRxHpMMUawe_H4FXe61twtrhPRQ&s" alt="Interior de la Suite Pátzcuaro" class="room-card__img">
+                        <div class="room-card__content">
+                            <h3 class="room-card__title">Suite Pátzcuaro</h3>
+                            <p class="room-card__price">$1,500 / Noche</p>
+                            <p class="room-card__desc">Decoración rústica y elegante, ideal para un descanso profundo y reparador.</p>
+                        </div>
+                    </article>
 
-            <article class="tarjeta">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSabEtZIM3L50Ih2EuI6zrMZ6lEgWvlsg5vgg&s" alt="Cabaña Zirahuén">
-                <div class="contenido-tarjeta">
-                    <h3>Cabaña Zirahuén</h3>
-                    <p class="precio">$1,800 / Noche</p>
-                    <p class="descripcion">Privacidad total con detalles en madera fina y un ambiente acogedor.</p>
+                    <article class="room-card">
+                        <img src="https://image-tc.galaxy.tf/wijpeg-39q0ohdze5lzfn7q47k4cyd7v/morelia-1920x1080_standard.jpg?width=650&crop=240%2C0%2C1440%2C1080" alt="Dormitorio Morelia con acabados de lujo" class="room-card__img">
+                        <div class="room-card__content">
+                            <h3 class="room-card__title">Dormitorio Morelia</h3>
+                            <p class="room-card__price">$2,200 / Noche</p>
+                            <p class="room-card__desc">El lujo de la época colonial en el centro de Morelia. Muros de piedra y techos altos.</p>
+                        </div>
+                    </article>
+
+                    <article class="room-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSabEtZIM3L50Ih2EuI6zrMZ6lEgWvlsg5vgg&s" alt="Cabaña Zirahuén rodeada de naturaleza" class="room-card__img">
+                        <div class="room-card__content">
+                            <h3 class="room-card__title">Cabaña Zirahuén</h3>
+                            <p class="room-card__price">$1,800 / Noche</p>
+                            <p class="room-card__desc">Privacidad total con detalles en madera fina y un ambiente inmersivo en la naturaleza.</p>
+                        </div>
+                    </article>
+
+                     <article class="room-card">
+                        <img src="https://tecolotito.elsiglodetorreon.com.mx/i/2020/12/1378650.jpeg" alt="Habitación Paracho con detalles musicales" class="room-card__img">
+                        <div class="room-card__content">
+                            <h3 class="room-card__title">Habitación Paracho</h3>
+                            <p class="room-card__price">$2,100 / Noche</p>
+                            <p class="room-card__desc">Un espacio dedicado a la música. Acabados en pino con acústica perfecta para descansar.</p>
+                        </div>
+                    </article>
                 </div>
-            </article>
-        </div>
+                
+                <button class="carousel__btn carousel__btn--next" aria-label="Siguiente">&#10095;</button>
+            </div>
+        </section>
+
+
+        <section class="location">
+            <div class="location__content">
+                <h2 class="location__title">Encuéntranos</h2>
+                <p class="location__desc">
+                    Hotel Quinta Dalam se encuentra en el corazón de Coeneo, Michoacán. Un lugar perfecto para desconectarte de la rutina y sumergirte en la magia y tradición de nuestro estado.
+                </p>
+                <ul class="location__list">
+                    <li><strong>Dirección:</strong> Centro Histórico, Coeneo, Michoacán.</li>
+                    <li><strong>Teléfono:</strong> +52 123 456 7890</li>
+                    <li><strong>Correo:</strong> reservaciones@quintadalam.com</li>
+                </ul>
+                <a href="contacto.html" class="btn btn--primary location__btn">Ver cómo llegar</a>
+            </div>
+            <div class="location__map">
+                <img src="https://tools.paintmaps.com/og_image/map_cropping/4-102075035-1.jpeg" alt="Mapa de Coeneo mostrando la ubicación de Quinta Dalam" class="location__img">
+            </div>
+        </section>
     </main>
 
-    <footer id="contacto" style="text-align: center; background-color: #2e4029; color: white; padding: 20px; margin-top: 40px;"> 
-        <div class="info-contacto" style="margin-bottom: 10px;">
-            <h3 style="color: white; margin-bottom: 5px; text-align: center;">Contáctanos</h3>
-            <p style="text-align: center;">Coeneo, Michoacán</p>
+    <footer class="footer">
+        <div class="footer__contact">
+            <h3 class="footer__title">Quinta Dalam</h3>
+            <p>Coeneo, Michoacán, México</p>
         </div>
-        
-        <div class="redes-sociales" style="margin-bottom: 15px; text-align: center;">
-            <a href="https://www.facebook.com/profile.php?id=61584681841684" target="_blank" style="color: #d4af37; text-decoration: none; margin: 0 10px;">Facebook</a> |
-            <a href="https://www.instagram.com/quintadalam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="color: #d4af37; text-decoration: none; margin: 0 10px;">Instagram</a> |
-            <a href="https://www.tiktok.com/@quintadalam?lang=es" target="_blank" style="color: #d4af37; text-decoration: none; margin: 0 10px;">TikTok</a>
+
+        <div class="footer__badges">
+            <a href="https://validator.w3.org" target="_blank" rel="noopener noreferrer">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s" alt="Valid HTML5" class="footer__badge-img">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" class="footer__badge-img">
+            </a>
         </div>
-        
-        <a href="https://validator.w3.org">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s" alt="Valid HTML5" height="31" width="88">
-        </a>
-        <p>
-        <a href="https://jigsaw.w3.org/css-validator/check/referer">
-            <img style="border:0;width:88px;height:31px"
-                src="https://jigsaw.w3.org/css-validator/images/vcss"
-                alt="¡CSS Válido!" />
-        </a>
-</p>
 
-        <p class="copyright" style="font-size: 0.8em; color: #ccc; text-align: center;">
-            © 2026 Hotel Quinta Dalam. Todos los derechos reservados. <br><br>
-            <a href="admin.html" style="color: #aaa; text-decoration: none; font-size: 0.9em;"> Panel de administración</a>
-
+        <p class="footer__copy">
+            &copy; 2026 Hotel Quinta Dalam. Todos los derechos reservados.<br>
+            <a href="admin.html" class="footer__admin-link">Acceso Administración</a>
         </p>
     </footer>
 
+    <script>
+        $(document).ready(function() {
+            const track = $('#roomTrack');
+            
+            $('.carousel__btn--next').click(function() {
+                let scrollAmount = $('.room-card').outerWidth(true); 
+                track.animate({ scrollLeft: '+=' + scrollAmount }, 400);
+            });
+
+            $('.carousel__btn--prev').click(function() {
+                let scrollAmount = $('.room-card').outerWidth(true);
+                track.animate({ scrollLeft: '-=' + scrollAmount }, 400);
+            });
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-    

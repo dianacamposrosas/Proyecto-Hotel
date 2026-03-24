@@ -8,34 +8,49 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo-titulo">
-            <h1>Hotel Quinta Dalam</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="mision.html">Misión</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+    <header class="header header--internal">
+        <div class="header__logo"><span>Quinta Dalam</span></div>
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li><a href="index.html" class="header__nav-link">Inicio</a></li>
+                <li><a href="mision.html" class="header__nav-link">Misión</a></li>
+                <li><a href="catalogo.html" class="header__nav-link">Catálogo</a></li>
+                <li><a href="contacto.html" class="header__nav-link">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main style="max-width: 800px; margin: 40px auto; padding: 40px; background-color: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center;">
-        <h2>Nuestra Visión</h2>
-        <hr style="margin-bottom: 30px;">
+    <main class="page-container" style="text-align: center;">
+        <h2 class="page-title">Nuestra Visión</h2>
+        <hr class="page-divider">
         
-        <h3 style="color: #d4af37; margin-bottom: 20px; font-style: italic;">"Alojando el corazón de Michoacán"</h3>
+        <h3 style="color: var(--color-accent); font-family: var(--font-heading); font-style: italic; font-size: 1.8rem; margin-bottom: 25px;">
+            "Alojando el corazón de Michoacán"
+        </h3>
         
-        <p style="font-size: 1.1em; color: #555; line-height: 1.8;">
+        <p style="font-size: 1.1em; color: var(--color-text-muted);">
             Nuestra visión busca que el huésped no solo visite Coeneo, sino que experimente todo el estado en un solo lugar. Al dedicar cada habitación a un municipio diferente, aspiramos a ser un referente del turismo de identidad, donde se preserva y presume la artesanía, el diseño y la historia michoacana.
         </p>
     </main>
 
-    <footer style="text-align: center; background-color: #2e4029; color: white; padding: 20px;"> 
-        <p class="copyright">© 2026 Hotel Quinta Dalam. Todos los derechos reservados.</p>
-    </footer>
+    <footer class="footer">
+        <div class="footer__contact">
+            <h3 class="footer__title">Quinta Dalam</h3>
+            <p>Coeneo, Michoacán, México</p>
+        </div>
 
+        <div class="footer__badges">
+            <a href="https://validator.w3.org" target="_blank" rel="noopener noreferrer">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s" alt="Valid HTML5" class="footer__badge-img">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" class="footer__badge-img">
+            </a>
+        </div>
+
+        <p class="footer__copy">
+            &copy; 2026 Hotel Quinta Dalam. Todos los derechos reservados.
+        </p>
+    </footer>
 </body>
 </html>
