@@ -35,7 +35,7 @@
                 <legend class="form__legend">Tipo de Movimiento</legend>
                 <div class="form__radio-group">
                     <label class="form__radio-label">
-                        <input type="radio" name="accion" value="alta" checked> Alta (Nueva)
+                        <input type="radio" name="accion" value="alta" checked> Alta (Nuevo registro)
                     </label>
                     <label class="form__radio-label">
                         <input type="radio" name="accion" value="modificar"> Modificar
@@ -100,7 +100,7 @@
     <script>
         $(document).ready(function() {
             
-            // 1. Lógica para mostrar/ocultar campos según el tipo de movimiento
+            // 1. Lógica para mostrar u ocultar campos según el tipo de movimiento
             function ajustarFormulario() {
                 let accion = $('input[name="accion"]:checked').val();
                 
@@ -122,7 +122,7 @@
             // Escuchar cambios en los radio buttons
             $('input[name="accion"]').change(ajustarFormulario);
 
-            // 2. Función genérica para validar (solo si el campo está visible)
+            // 2. Función  para validar (solo si el campo está visible)
             function validarCampo(campoId, mensajeId, condicion, mensajeError) {
                 if ($(campoId).is(':visible')) { // Solo valida si el campo se está mostrando
                     let valor = $(campoId).val().trim();
