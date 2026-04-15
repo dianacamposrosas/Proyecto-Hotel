@@ -791,3 +791,105 @@ img, video {
     object-fit: cover; /* Asegura que el mapa llene el espacio sin deformarse */
     min-height: 350px;
 }
+
+
+/* =========================================
+   15. SECCIÓN EXPERIENCIAS (ALBERCA Y JARDÍN)
+========================================= */
+.experience {
+    padding: 80px 5%;
+    background-color: var(--color-bg-light);
+}
+
+.experience__header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.experience__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 300px);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.experience__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+}
+
+/* La imagen de la alberca ocupará más espacio (2x2) */
+.experience__item--large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Las otras dos imágenes ocuparán el resto (2x1 cada una) */
+.experience__item:not(.experience__item--large) {
+    grid-column: span 2;
+}
+
+.experience__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+/* Efecto hover con texto que aparece */
+.experience__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: var(--color-white);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.experience__item:hover .experience__overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.experience__item:hover .experience__img {
+    transform: scale(1.1);
+}
+
+.experience__caption {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.experience__sub-caption {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-accent);
+}
+
+.experience__cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Responsive para la cuadrícula */
+@media (max-width: 768px) {
+    .experience__grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .experience__item--large, .experience__item:not(.experience__item--large) {
+        grid-column: span 1;
+        grid-row: auto;
+        height: 300px;
+    }
+}
