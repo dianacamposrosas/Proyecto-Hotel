@@ -209,9 +209,10 @@ img, video {
     border-radius: 12px;
     box-shadow: var(--shadow-hover);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
     align-items: end;
+    padding: 30px 50px;
 }
 
 .booking-bar__field {
@@ -867,6 +868,7 @@ img, video {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     margin-bottom: 5px;
+    color: var(--color-white);
 }
 
 .experience__sub-caption {
@@ -891,5 +893,653 @@ img, video {
         grid-column: span 1;
         grid-row: auto;
         height: 300px;
+    }
+}
+
+/* =========================================
+   FLATPICKR UNIFICADO - ESTILO QUINTA DALAM
+   ========================================= */
+
+   
+/* 1. Contenedor Principal (Ancho total para evitar que se corte el domingo) */
+.flatpickr-calendar {
+    padding: 10px !important; /* El "aire" que buscabas en los bordes */
+    width: 350px !important;  /* Lo hacemos un poco más ancho para que luzca */
+    border-radius: 15px !important; /* Bordes más suaves */
+}
+.flatpickr-calendar.multiMonth {
+    width: 620px !important; /* Aumentado para dar espacio al gap y línea */
+    box-sizing: content-box !important;
+}
+
+.quinta-calendar-style {
+    padding: 20px !important; /* Más aire alrededor */
+    border: none !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    border-radius: 20px !important;
+    background: #fff !important;
+}
+
+/* 2. Encabezado y Separación de Meses */
+.flatpickr-months {
+    padding: 10px 0 !important;
+}
+
+.flatpickr-current-month .cur-month,
+.flatpickr-current-month input.cur-year {
+    font-weight: 600 !important;
+    color: var(--color-primary) !important;
+}
+
+.flatpickr-weekday {
+    font-weight: 600 !important;
+    color: var(--color-text-muted) !important;
+}
+
+/* 3. El Input en la Booking Bar */
+.booking-bar__input#dateRange {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 12px 0;
+    cursor: pointer;
+    border-bottom: 2px solid var(--color-border);
+    background: transparent;
+}
+
+/* 4. Días Seleccionados (Efecto Barra Unida) */
+
+/* Inicio del rango */
+.flatpickr-day.startRange {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: white !important;
+    border-radius: 8px 0 0 8px !important;
+}
+
+/* Fin del rango */
+.flatpickr-day.endRange {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: white !important;
+    border-radius: 0 8px 8px 0 !important;
+}
+
+/* Día único seleccionado */
+.flatpickr-day.startRange.endRange {
+    border-radius: 8px !important;
+}
+
+/* Días en medio (Unión perfecta sin huecos) */
+.flatpickr-day.inRange {
+    background: #edf7ea !important;
+    color: var(--color-primary) !important;
+    border-radius: 0 !important;
+    border-color: transparent !important;
+    /* Ajuste de sombras para que se "peguen" los cuadros */
+    box-shadow: -5px 0 0 #edf7ea, 10px 0 0 #edf7ea !important;
+}
+
+/* 5. Hovers y Enfoque */
+.flatpickr-day:hover:not(.startRange):not(.endRange) {
+    background: #e2ecd6 !important;
+    color: var(--color-primary-dark) !important;
+    border-color: transparent !important;
+}
+
+.flatpickr-day:focus {
+    outline: none;
+}
+
+/* Limpieza de bordes extra */
+.flatpickr-day.selected.inRange, 
+.flatpickr-day.startRange.inRange, 
+.flatpickr-day.endRange.inRange {
+    border-color: var(--color-primary) !important;
+}
+
+
+/* Reservas */
+
+/* Contenedor Principal de la página de reserva */
+.booking-page {
+    background-color: #f9f9f9; /* Fondo muy claro para que resalten las tarjetas */
+    color: var(--color-text);
+}
+
+.booking-header {
+    background-color: #000; /* Negro sólido para contraste */
+    color: #fff;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.booking-header__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.logo-minimal {
+    font-family: var(--font-heading);
+    color: var(--color-accent); /* Tu dorado/acento */
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.booking-header__summary {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Las "Pills" de información */
+.summary-pill {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.pill-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+#labelFechas, #labelNoches, #labelGuests {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.btn-edit {
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.btn-edit:hover {
+    background: var(--color-accent);
+    color: #000;
+}
+
+.booking-main {
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 0 5%;
+}
+
+/* Ajuste de la cuadrícula principal para eliminar el hueco izquierdo */
+.booking-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 350px !important; /* La lista ocupa todo el resto (1fr), el ticket fijo */
+    gap: 40px !important;
+    width: 95% !important; /* Usamos casi todo el ancho de la pantalla */
+    max-width: 1400px !important; /* Pero con un límite para pantallas muy grandes */
+    margin: 40px auto !important; /* Centra el bloque completo, no solo el contenido */
+    padding: 0 5% !important;
+}
+
+/* Título de la sección */
+.results-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.results-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--color-accent);
+}
+
+/* Columna del Ticket (Sticky) */
+.booking-aside {
+    position: sticky !important;
+    top: 230px !important; /* Distancia desde la parte de arriba de la pantalla */
+    height: fit-content; /* Vital para que el sticky funcione */
+    z-index: 10;
+}
+
+.booking-ticket {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--color-primary);
+}
+
+.booking-ticket h3 {
+    font-family: var(--font-heading);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    .booking-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .booking-header__content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .booking-aside {
+        position: relative;
+        top: 0;
+        order: -1; /* El ticket sale arriba en móvil para que vean el precio */
+        margin-bottom: 30px;
+    }
+}
+/* Integración en el Header */
+.booking-data-bar {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 25px;
+    border-radius: 12px;
+    border: 1px solid var(--color-accent);
+    gap: 30px;
+    align-items: center;
+}
+
+.data-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.data-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.data-value {
+    color: var(--color-white);
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.btn-edit-simple {
+    background: transparent;
+    border: none;
+    color: var(--color-accent);
+    text-decoration: underline;
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* El Ticket con la estética del sitio */
+.booking-ticket {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-primary); /* Detalle en verde */
+    padding: 30px;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+}
+
+.booking-ticket h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo Píldora para la página de reserva */
+.booking-edit-pill {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: transparent; /* Sin fondo */
+    border: none; /* Sin bordes */
+    box-shadow: none; /* Sin sombras */
+    width: 100%;
+    margin: 0 auto;
+}
+
+.edit-field {
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+    /* Un separador muy sutil entre campos, opcional */
+    border-right: 1px solid rgba(255, 255, 255, 0.1); 
+    flex-shrink: 0;
+}
+
+.edit-field.no-border {
+    border-right: none;
+}
+
+/* Títulos en DORADITO como te gustaba */
+.edit-label {
+    font-size: 0.7rem;
+    color: var(--color-accent) !important; /* Dorado */
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+/* Los valores (Fechas y Select) en BLANCO */
+.edit-input {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-family: var(--font-body);
+    font-size: 1.2rem; /* Un poco más grande para que luzca */
+    font-weight: 500;
+    width: 350px !important;
+    cursor: pointer;
+    outline: none;
+}
+
+.edit-select {
+    background: rgb(35,49,32) !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    padding: 10px;
+    
+}
+
+/* Estilo extra para cuando pasas el mouse (algunos navegadores lo permiten) */
+.edit-select option:hover {
+    background-color: var(--color-accent) !important;
+    color: var(--color-primary-dark) !important;
+}
+
+/* Ajuste para el select mismo para asegurar que el navegador no meta mano */
+.edit-select {
+    color-scheme: dark; /* Esto le dice al navegador que use el modo oscuro nativo */
+}
+
+/* El número de noches */
+.edit-nights {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+/* Responsive para que no se rompa en tablets */
+@media (max-width: 900px) {
+    .booking-edit-pill {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 20px;
+    }
+    .edit-field {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+    .edit-input { width: 100%; text-align: center; }
+}
+
+/* =========================================
+   TARJETAS DE RESERVA ESTILO CATÁLOGO
+   ========================================= */
+
+.booking-list .catalog-item {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    min-height: 400px; /* Altura mínima para que luzcan */
+    margin-bottom: 30px !important;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Contenedor de la imagen: Forzamos que ocupe todo el alto */
+.booking-list .catalog-item__img-wrapper {
+    width: 40% !important; /* Ajusta el ancho de la foto */
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* La imagen mágica que rellena todo */
+.booking-list .catalog-item__img {
+    width: 100% !important;
+    height: 100% !important; /* Ocupa el 100% del alto del contenedor */
+    object-fit: cover !important; /* Recorta la imagen para llenar el espacio sin estirarse */
+    display: block;
+}
+
+/* Contenido del texto */
+.booking-list .catalog-item__content {
+    width: 60% !important;
+    padding: 30px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Separa el título del botón de reserva */
+}
+
+/* Ajuste para que las etiquetas (tags) y títulos no se amontonen */
+.booking-list .catalog-item__tag {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.booking-list .catalog-item__title {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+/* =========================================
+   OPERACIÓN RESCATE: IZQUIERDA TOTAL
+   ========================================= */
+
+/* 1. Forzamos que el contenedor de la cuadrícula ocupe todo el ancho */
+.booking-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 350px !important; 
+    width: 100% !important;
+    max-width: 100% !important; /* Eliminamos cualquier límite de ancho */
+    margin: 40px 0 !important;   /* Quitamos el 'auto' del margen lateral */
+    padding-left: 5% !important; /* Solo un poco de aire al borde */
+    justify-content: start !important;
+    text-align: left !important;
+}
+
+/* 2. La columna donde viven las habitaciones */
+.booking-list {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important; /* Rompemos cualquier flex centrado del padre */
+}
+
+/* 3. Aseguramos que la lista interna también se pegue */
+#habitacionesResultados.catalog-list {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important; /* Alinea hijos a la izquierda */
+}
+
+/* 4. Las tarjetas: les quitamos cualquier rastro de centrado */
+.booking-list .catalog-item {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important; /* Que use todo el espacio del 1fr del grid */
+}
+
+.ticket-empty {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Contenedor para alinear todo */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Forzar el color del icono */
+.input-with-icon i {
+    position: absolute;
+    left: 10px; /* Ajusta según prefieras */
+    color: #ffffff !important; /* Dorado Quinta Dalam directo */
+    font-size: 1.2rem !important;
+    z-index: 5; /* Para que quede por encima del fondo del input */
+    pointer-events: none;
+}
+
+/* Espacio en el input para que el texto no choque */
+#dateRange.edit-input {
+    padding-left: 40px !important; 
+    color: white !important; /* Color del texto del rango de fechas */
+}
+
+.input-with-icon:hover i {
+    color: #d4af37 !important;
+    transition: 0.3s;
+}
+
+/* Contenedor del Formulario */
+.checkout-card {
+    width: 100%;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    animation: fadeIn 0.5s ease;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+/* Barra de Progreso */
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #999;
+    position: relative;
+    font-weight: 600;
+}
+
+.step.active {
+    color: var(--color-primary);
+}
+
+.step.active::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-accent); /* La raya dorada que mencionaste */
+    transition: 0.3s;
+}
+
+/* Contenedor de la animación */
+.bird-container {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* El pajarito (usando un icono o forma simple) */
+.bird-particle {
+    position: fixed;
+    color: #d4af37; 
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 999999 !important;
+    /* Duración aumentada a 3.5 segundos para un vuelo lento y elegante */
+    animation: flyAway 3.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+@keyframes flyAway {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2); /* Pequeño salto inicial */
+    }
+    100% {
+        /* Vuelo más extendido y con una rotación suave */
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0.3) rotate(var(--r));
+        opacity: 0;
     }
 }

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reservar | Quinta Dalam</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10ns/es.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="booking-page">
+
+    <!-- HEADER ORIGINAL -->
+    <header class="header header--internal"
+        style="position: sticky; top: 0; background-color: var(--color-primary-dark); padding: 0; flex-direction: column;">
+
+        <!-- BLOQUE 1: Identidad y Navegación (Renglón superior) -->
+        <div class="header__top"
+            style="display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <div class="header__logo">
+                <a href="index.html" style="color: white; font-family: var(--font-heading); font-size: 1.8rem;">Quinta
+                    Dalam</a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__nav-list" style="list-style: none; display: flex; gap: 30px; margin: 0;">
+                    <li><a href="index.html" class="header__nav-link">Inicio</a></li>
+                    <li><a href="catalogo.html" class="header__nav-link">Catálogo</a></li>
+                    <li><a href="contacto.html" class="header__nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- BLOQUE 2: Barra de Reserva (Siguiente renglón) -->
+        <div class="header__booking-row" style="padding: 20px 5%; display: flex; justify-content: center; width: 100%;">
+            <div class="booking-edit-pill">
+                <div class="edit-field">
+                    <span class="edit-label">Estancia</span>
+                    <div class="input-with-icon" style="position: relative; display: flex; align-items: center;">
+                        <i class="fa-regular fa-calendar-days" style="position: absolute; left: 10px; color: #d4af37;"></i>
+                        <input type="text" id="dateRange" class="edit-input" placeholder="Selecciona fechas" readonly style="padding-left: 35px;">
+                    </div>
+                </div>
+
+                <div class="edit-field">
+                    <span class="edit-label">Huéspedes</span>
+                    <select id="guests" class="edit-select">
+                        <option value="1">1 Huésped</option>
+                        <option value="2">2 Huéspedes</option>
+                        <option value="3">3 Huéspedes</option>
+                        <option value="4">4+ Familia</option>
+                    </select>
+                </div>
+
+                <div class="edit-field no-border">
+                    <span class="edit-label">Noches</span>
+                    <div id="labelNoches" class="edit-nights">0</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="booking-main">
+        <div class="booking-grid">
+            <!-- Columna Habitaciones -->
+            <section class="booking-list">
+                <h2 class="results-title">Habitaciones Disponibles</h2>
+                <div id="habitacionesResultados" class="catalog-list">
+                    <!-- Aquí inyectaremos las tarjetas con estilo catalog-item -->
+                </div>
+            </section>
+
+            <!-- Columna Ticket (Estilo Quinta) -->
+            <aside class="booking-aside">
+                <div class="booking-ticket">
+                    <h3>Tu Estancia</h3>
+                    <div class="ticket-content" id="ticketSummary">
+                        <p class="ticket-empty">Selecciona una habitación para ver el resumen.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- FOOTER ORIGINAL -->
+    <footer class="footer">
+        <div class="footer__contact">
+            <h3 class="footer__title">Quinta Dalam</h3>
+            <p>Coeneo, Michoacán, México</p>
+        </div>
+        <div class="footer__badges">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnPZLFcdaKr65eQ-bYB7ypcNq6OvsYK2HrA&s"
+                alt="HTML5" class="footer__badge-img">
+            <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="CSS" class="footer__badge-img">
+        </div>
+        <p class="footer__copy">
+            &copy; 2026 Hotel Quinta Dalam. <a href="admin.html" class="footer__admin-link">Acceso Administración</a>
+        </p>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            const habitaciones = [
+                {
+                    id: 1,
+                    nombre: 'Suite Tzintzuntzan',
+                    tag: 'Suite Premium',
+                    precio: 1500,
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAdG2CazjXjZk75x1liXktIy40R9GbzRzvNg&s",
+                    desc: "Inspirada en el tradicional pueblo de Tzintzuntzan. Un espacio amplio lleno de luz natural y artesanía local.",
+                    amenities: ["Cama King Size", "Balcón con vista", "Máquina de café"]
+                },
+                {
+                    id: 2,
+                    nombre: 'Dormitorio Morelia',
+                    tag: 'Suite Presidencial',
+                    precio: 2200,
+                    img: "https://image-tc.galaxy.tf/wijpeg-39q0ohdze5lzfn7q47k4cyd7v/morelia-1920x1080_standard.jpg?width=650&crop=240%2C0%2C1440%2C1080",
+                    desc: "El lujo de la época colonial. Muros de piedra tallada, techos altos y una atmósfera romántica.",
+                    amenities: ["Jacuzzi Privado", "Chimenea artesanal", "Minibar incluido"]
+                },
+                {
+                    id: 3,
+                    nombre: 'Cabana Zirahuen',
+                    tag: 'Cabaña Ecológica',
+                    precio: 1800,
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSabEtZIM3L50Ih2EuI6zrMZ6lEgWvlsg5vgg&s",
+                    desc: "Privacidad total apartada del edificio principal con acabados en madera fina.",
+                    amenities: ["Terraza privada", "Cama Queen Size", "Fogatero exterior"]
+                },
+                {
+                    id: 4,
+                    nombre: 'Habitacion Paracho',
+                    tag: 'Habitación Estándar',
+                    precio: 1200,
+                    img: "https://tecolotito.elsiglodetorreon.com.mx/i/2020/12/1378650.jpeg",
+                    desc: "Un espacio dedicado a la música y la tradición. Acabados en pino con acústica perfecta.",
+                    amenities: ["Aislamiento acústico", "Silla mecedora", "Dulces típicos"]
+                },
+                {
+                    id: 5,
+                    nombre: 'Suite Patzcuaro',
+                    tag: 'Suite Premium',
+                    precio: 1600,
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjoHX2nx9RRxHpMMUawe_H4FXe61twtrhPRQ&s",
+                    desc: "Elegancia forjada en cobre. Detalles artesanales de Santa Clara del Cobre.",
+                    amenities: ["Cama King Size", "Tina de cobre", "Smart TV 55 pulgadas"]
+                },
+                {
+                    id: 6,
+                    nombre: 'Habitacion Uruapan',
+                    tag: 'Habitación Estándar',
+                    precio: 1100,
+                    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/e3/12/e8/parque-nacional-barranca.jpg?w=500&h=-1&s=1",
+                    desc: "Inspirada en la capital mundial del aguacate. Diseño fresco con vistas a nuestros jardines.",
+                    amenities: ["Vista al jardín", "2 Camas Matrimoniales", "Ducha de lluvia"]
+                }
+            ];
+            const miSeparador = "  ➔  ";
+
+            // 1. Inicializar Flatpickr con el formato exacto
+            const fp = flatpickr("#dateRange", {
+                mode: "range",
+                minDate: "today",
+                dateFormat: "j M Y", // Formato: 15 Abr 2026
+                locale: { ...flatpickr.l10ns.es, rangeSeparator: miSeparador },
+                onChange: function (selectedDates) {
+                    if (selectedDates.length === 2) {
+                        // Calculamos la diferencia de días
+                        const diff = Math.abs(selectedDates[1] - selectedDates[0]);
+                        const nights = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+                        // ACTUALIZACIÓN:
+                        // 1. Actualizamos el número en el header
+                        $('#labelNoches').text(nights);
+
+                        // 2. LLAMAMOS a la función para que refresque los precios de las tarjetas
+                        renderizarHabitaciones(nights);
+
+                        // 3. Limpiamos el ticket (opcional, para que no se quede con el precio viejo)
+                        $('#ticketSummary').html('<p class="ticket-empty">Selecciona una habitación para ver el resumen actualizado.</p>');
+                    }
+                }
+            });
+
+            function renderizarHabitaciones(noches = 1) {
+                const grid = $('#habitacionesResultados');
+                grid.hide().empty(); // Efecto de carga simple
+
+                habitaciones.forEach(hab => {
+                    const subtotal = hab.precio * noches;
+                    const iva = subtotal * 0.16;
+                    const total = subtotal + iva;
+
+                    const amenitiesHTML = hab.amenities.map(a => `<li>${a}</li>`).join('');
+
+                    const card = `
+                        <article class="catalog-item">
+                            <div class="catalog-item__img-wrapper">
+                                <img src="${hab.img}" alt="${hab.nombre}" class="catalog-item__img">
+                            </div>
+                            <div class="catalog-item__content">
+                                <span class="catalog-item__tag">${hab.tag}</span>
+                                <h3 class="catalog-item__title">${hab.nombre}</h3>
+                                <p class="catalog-item__price">$${hab.precio.toLocaleString()} MXN / Noche</p>
+                                <p class="catalog-item__desc">${hab.desc}</p>
+                                <ul class="catalog-item__amenities">
+                                    ${amenitiesHTML}
+                                </ul>
+                                
+                                <div class="booking-price-box" style="margin-top: 15px; padding: 15px; background: rgba(212, 175, 55, 0.05); border: 1px dashed var(--color-accent); border-radius: 8px;">
+                                    <p style="margin:0; font-size: 0.85rem; color: #666;">Presupuesto para ${noches} noche(s):</p>
+                                    <p style="margin:5px 0; font-size: 1.4rem; color: var(--color-primary); font-weight: 700;">$${total.toLocaleString()} <small style="font-size: 0.7rem; color: #999;">(IVA inc.)</small></p>
+                                    <button class="btn btn--primary" style="width: 100%;" onclick="seleccionarParaTicket('${hab.nombre}', ${hab.precio}, ${noches})">
+                                        Seleccionar habitación
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                    grid.append(card);
+                });
+                grid.fadeIn(500);
+            }
+
+
+            // 2. Leer parámetros de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const checkin = urlParams.get('in');
+            const checkout = urlParams.get('out');
+
+            if (checkin && checkout) {
+                // PASO CLAVE: Convertimos las fechas a objetos reales de JavaScript
+                // Esto hace que Flatpickr ignore si el mes venía en inglés o español
+                const dateIn = new Date(checkin);
+                const dateOut = new Date(checkout);
+
+                if (!isNaN(dateIn) && !isNaN(dateOut)) {
+                    // Seteamos las fechas internamente
+                    fp.setDate([dateIn, dateOut]);
+
+                    // Forzamos el texto en el input usando el formato del calendario actual
+                    // Esto "traduce" automáticamente cualquier mes que venga del index
+                    const textIn = fp.formatDate(dateIn, "j M Y");
+                    const textOut = fp.formatDate(dateOut, "j M Y");
+                    $('#dateRange').val(textIn + miSeparador + textOut);
+                } else {
+                    // Si por alguna razón lo de arriba falla, el plan B (tu código original)
+                    fp.setDate([checkin, checkout]);
+                    $('#dateRange').val(checkin + miSeparador + checkout);
+                }
+            }
+
+            if (urlParams.get('n')) $('#labelNoches').text(urlParams.get('n'));
+            if (urlParams.get('g')) $('#guests').val(urlParams.get('g'));
+
+            const nochesActuales = parseInt($('#labelNoches').text()) || 1;
+            renderizarHabitaciones(nochesActuales);
+            $('#guests').on('change', function () {
+                const nochesActuales = parseInt($('#labelNoches').text()) || 1;
+                renderizarHabitaciones(nochesActuales);
+                // Limpiamos ticket porque cambió la configuración de la búsqueda
+                $('#ticketSummary').html('<p class="ticket-empty">Selecciona una habitación para ver el resumen actualizado.</p>');
+            });
+        });
+
+        function seleccionarParaTicket(nombre, precioNoche, noches) {
+            const subtotal = precioNoche * noches;
+            const iva = subtotal * 0.16;
+            const total = subtotal + iva;
+            
+            // Obtenemos las fechas directamente del input de Flatpickr
+            const fechas = $('#dateRange').val();
+
+            const ticketHTML = `
+                <div style="animation: fadeIn 0.4s ease-in-out;">
+                    <h4 style="color: var(--color-primary); margin-bottom: 15px; border-bottom: 1px solid var(--color-accent); padding-bottom: 10px; font-family: var(--font-heading);">Resumen de Selección</h4>
+                    
+                    <p style="margin: 5px 0; font-size: 1.1rem;"><strong>${nombre}</strong></p>
+                    
+                    <!-- Detalles de Estancia -->
+                    <div style="margin: 15px 0; font-size: 0.9rem; color: #444; background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 5px;">
+                        <p style="margin: 3px 0;">
+                            <i class="fa-regular fa-calendar-check" style="color: var(--color-primary); width: 20px;"></i> 
+                            ${fechas}
+                        </p>
+                        <p style="margin: 3px 0;">
+                            <i class="fa-solid fa-moon" style="color: #5c6b73; width: 20px;"></i> 
+                            ${noches} noche(s) seleccionadas
+                        </p>
+                    </div>
+
+                    <p style="margin: 5px 0; font-size: 0.85rem; color: #666;">Precio base: $${precioNoche.toLocaleString()} x noche</p>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px; border: 1px solid #eee;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem;">
+                            <span>Subtotal:</span> 
+                            <span>$${subtotal.toLocaleString()}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem;">
+                            <span>IVA (16%):</span> 
+                            <span>$${iva.toLocaleString()}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 15px; border-top: 2px solid #ddd; padding-top: 15px; font-size: 1.3rem; color: var(--color-primary); font-weight: 800;">
+                            <span>TOTAL:</span> 
+                            <span>$${total.toLocaleString()}</span>
+                        </div>
+                        <small style="display:block; text-align:right; color: #999; font-size: 0.7rem;">Moneda: MXN</small>
+                    </div>
+
+                    <!-- BOTÓN INTELIGENTE: Mantiene tu estilo pero con ID para controlarlo -->
+                    <button id="main-booking-btn" class="btn" style="width: 100%; margin-top: 20px; background: #d4af37; color: #1a2418; font-weight: 800; padding: 15px; border-radius: 8px; cursor: pointer; border: none; transition: 0.3s;" 
+                        onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'"
+                        onclick="mostrarFormularioHuesped()">
+                        CONFIRMAR RESERVACIÓN
+                    </button>
+                    
+                    <p style="text-align: center; font-size: 0.75rem; color: #999; margin-top: 15px;">
+                        <i class="fas fa-lock"></i> Pago seguro y garantizado
+                    </p>
+                </div>
+            `;
+            
+            $('#ticketSummary').hide().html(ticketHTML).fadeIn(300);
+        }
+        
+        function mostrarFormularioHuesped() {
+            $('#main-title').text('Información del Huésped');
+            $('#progress-fill').css('width', '66.66%');
+            $('#lbl-step-2').addClass('active');
+
+            $('#main-booking-btn')
+                .text('CONTINUAR AL PAGO')
+                .attr('onclick', 'mostrarPago()')
+                .css('background', '#d4af37');
+
+            const formHTML = `
+                <div class="checkout-card" style="max-width: 100%;">
+                    <div style="display:flex; align-items:center; margin-bottom:25px;">
+                        <button class="btn-back" onclick="location.reload()" style="border:1px solid #ddd; border-radius:50%; width:35px; height:35px; cursor:pointer; margin-right:15px; transition:0.3s;"><i class="fas fa-arrow-left"></i></button>
+                        <h3 style="margin:0; font-family: var(--font-heading);">Detalles de contacto</h3>
+                    </div>
+                    
+                    <form class="form-grid">
+                        <div class="form-group"><label><i class="fas fa-user"></i> Nombre(s) *</label><input type="text" placeholder="Ej. Juan Manuel" required></div>
+                        <div class="form-group"><label><i class="fas fa-user-tag"></i> Apellidos *</label><input type="text" placeholder="Ej. Pérez García" required></div>
+                        <div class="form-group"><label><i class="fas fa-envelope"></i> Correo Electrónico *</label><input type="email" placeholder="juan@ejemplo.com" required></div>
+                        <div class="form-group"><label><i class="fas fa-phone"></i> WhatsApp / Celular *</label><input type="tel" placeholder="10 dígitos con lada" required></div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-suitcase"></i> Motivo del viaje</label>
+                            <select>
+                                <option>Placer / Vacaciones</option>
+                                <option>Negocios</option>
+                                <option>Aniversario / Boda</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Hora estimada de llegada</label>
+                            <select>
+                                <option>15:00 - 17:00</option>
+                                <option>17:00 - 19:00</option>
+                                <option>19:00 - 21:00</option>
+                                <option>Después de las 21:00</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label><i class="fas fa-comment-dots"></i> ¿Alguna petición especial? (Opcional)</label>
+                            <textarea rows="2" placeholder="Ej. Alergias, cama extra, decoración especial..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                ${generarSeccionInfoPropiedad()}
+            `;
+            $('#habitacionesResultados').fadeOut(300, function() { $(this).html(formHTML).fadeIn(400); });
+        }
+
+        function mostrarPago() {
+            $('#main-title').text('Método de Pago');
+            $('#progress-fill').css('width', '100%');
+            $('#lbl-step-3').addClass('active');
+            
+            $('#main-booking-btn').text('PAGAR Y FINALIZAR').attr('onclick', 'confirmarFinal()');
+
+            const pagoHTML = `
+                <div class="checkout-card">
+                    <div style="display:flex; align-items:center; margin-bottom:25px;">
+                        <button class="btn-back" onclick="mostrarFormularioHuesped()" style="border:1px solid #ddd; border-radius:50%; width:35px; height:35px; cursor:pointer; margin-right:15px;"><i class="fas fa-arrow-left"></i></button>
+                        <h3 style="margin:0; font-family: var(--font-heading);">Pago Seguro</h3>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.9rem; color: #666;">Tarjetas aceptadas:</span>
+                        <div style="font-size: 1.5rem; color: #2c3e50; display: flex; gap: 10px;">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                        </div>
+                    </div>
+
+                    <form class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Nombre en la tarjeta</label>
+                            <input type="text" placeholder="Como aparece en la tarjeta">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Número de Tarjeta</label>
+                            <div style="position:relative;">
+                                <input type="text" placeholder="0000 0000 0000 0000" style="padding-right:40px;">
+                                <i class="fas fa-lock" style="position:absolute; right:15px; top:15px; color:#ccc;"></i>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>Expiración</label><input type="text" placeholder="MM/AA"></div>
+                        <div class="form-group"><label>CVC <i class="fas fa-question-circle" title="3 números al reverso"></i></label><input type="password" placeholder="123"></div>
+                        
+                        <div class="form-group full-width" style="flex-direction:row; gap:10px; align-items:center; margin-top:10px;">
+                            <input type="checkbox" id="factura" style="width:auto;">
+                            <label for="factura" style="margin:0;">Requiero factura fiscal (CFDI)</label>
+                        </div>
+                    </form>
+                </div>
+                ${generarSeccionInfoPropiedad()}
+            `;
+            $('#habitacionesResultados').fadeOut(300, function() { $(this).html(pagoHTML).fadeIn(400); });
+        }
+
+        function confirmarFinal() {
+            const btn = document.getElementById('main-booking-btn');
+            
+            // 1. Lanzar pajaritos
+            animarPajaritos(btn);
+            
+            // 2. Efecto visual en el botón
+            $(btn).css('transform', 'scale(0.95)').text('¡PROCESANDO!').prop('disabled', true);
+
+            // 3. Simular éxito después de un breve momento
+            setTimeout(() => {
+                alert('¡Vuelo confirmado! Tu reservación en Quinta Dalam ha sido exitosa. Revisa tu correo.');
+                window.location.href = 'index.html'; // O redirigir a una página de gracias
+            }, 2500);
+        }
+
+        function generarSeccionInfoPropiedad() {
+            return `
+                <!-- SECCIÓN DE INFORMACIÓN Y SERVICIOS -->
+                <div style="margin-top: 25px; padding: 30px; background: #fff; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;">
+                    <h3 style="font-family: var(--font-heading); color: var(--color-primary); margin-bottom: 15px;">Información de la Propiedad</h3>
+                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 25px;">
+                        <strong>Quinta Dalam</strong> es un refugio ancestral ubicado en el corazón de Coeneo. Nuestra arquitectura orgánica se funde con la naturaleza michoacana, ofreciendo un santuario de paz. Cada habitación ha sido diseñada por artesanos locales, utilizando materiales sostenibles y detalles de lujo que celebran nuestra cultura.
+                    </p>
+
+                    <h4 style="margin-bottom: 20px; font-size: 1.1rem; color: #333; display: flex; align-items: center;">
+                        <i class="fas fa-concierge-bell" style="margin-right: 10px; color: #d4af37;"></i> Servicios incluidos
+                    </h4>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.9rem; color: #555;">
+                        <div style="display:flex; align-items:center;"><i class="fas fa-coffee" style="color:#d4af37; width:25px;"></i> Desayuno artesanal diario</div>
+                        <div style="display:flex; align-items:center;"><i class="fas fa-spa" style="color:#d4af37; width:25px;"></i> Acceso a zona de meditación</div>
+                        <div style="display:flex; align-items:center;"><i class="fas fa-parking" style="color:#d4af37; width:25px;"></i> Valet parking privado</div>
+                        <div style="display:flex; align-items:center;"><i class="fas fa-tint" style="color:#d4af37; width:25px;"></i> Amenidades orgánicas de la región</div>
+                        <div style="display:flex; align-items:center;"><i class="fas fa-fire-alt" style="color:#d4af37; width:25px;"></i> Fogata nocturna en el jardín</div>
+                        <div style="display:flex; align-items:center;"><i class="fas fa-shuttle-van" style="color:#d4af37; width:25px;"></i> Transporte al centro histórico</div>
+                    </div>
+
+                    <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div>
+                            <h4 style="color: var(--color-primary); margin-bottom: 15px;">Políticas de Estancia</h4>
+                            <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: #666; line-height: 1.8;">
+                                <li><i class="fas fa-check" style="color:#d4af37;"></i> Cancelación gratuita hasta 48 hrs antes.</li>
+                                <li><i class="fas fa-check" style="color:#d4af37;"></i> Ambiente 100% familiar y de descanso.</li>
+                                <li><i class="fas fa-check" style="color:#d4af37;"></i> No se permite el uso de bocinas en áreas comunes.</li>
+                            </ul>
+                        </div>
+                        <div style="background: #fff9ea; padding: 15px; border-radius: 10px; border: 1px solid #f7e8c3;">
+                            <h4 style="color: #856404; margin-bottom: 10px; font-size: 0.9rem;"><i class="fas fa-shield-alt"></i> Garantía Quinta Dalam</h4>
+                            <p style="font-size: 0.8rem; color: #856404; margin: 0;">Tu reservación incluye seguro de viajero básico y protección de datos bancarios mediante cifrado SSL de 256 bits.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        function animarPajaritos(elemento) {
+            const rect = elemento.getBoundingClientRect();
+            
+            // Calculamos el centro exacto del botón respecto a la ventana del navegador
+            const xCentro = rect.left + (rect.width / 2);
+            const yCentro = rect.top + (rect.height / 2);
+
+            for (let i = 0; i < 15; i++) { // Subimos a 15 pajaritos para que se vea más lleno
+                const bird = document.createElement('i');
+                bird.className = 'fas fa-dove bird-particle';
+                
+                // Posición inicial: el centro del botón
+                bird.style.left = xCentro + 'px';
+                bird.style.top = yCentro + 'px';
+
+                // Trayectorias más abiertas y dinámicas
+                const xDestino = (Math.random() - 0.5) * 600; // Se dispersan más ancho
+                const yDestino = -(Math.random() * 400 + 150); // Vuelan más alto
+                const rotacion = (Math.random() - 0.5) * 120; // Rotan más
+
+                bird.style.setProperty('--x', `${xDestino}px`);
+                bird.style.setProperty('--y', `${yDestino}px`);
+                bird.style.setProperty('--r', `${rotacion}deg`);
+
+                document.body.appendChild(bird);
+
+                // Limpiar
+                setTimeout(() => bird.remove(), 2300);
+            }
+        }
+    </script>
+</body>
+
+</html>

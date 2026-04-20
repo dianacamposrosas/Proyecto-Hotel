@@ -8,6 +8,11 @@
     <!--<link rel="stylesheet" href="css/forms.css">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dianacamposrosas/Proyecto-Hotel@main/css/forms.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Tema oscuro o rústico si prefieres, pero lo estilizaremos con tu CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script> <!-- Para que esté en español -->
 </head>
 <body>
 
@@ -46,13 +51,10 @@
 
         <section class="booking-bar" aria-label="Búsqueda de disponibilidad">
             <div class="booking-bar__field">
-                <label for="checkin" class="booking-bar__label">Llegada</label>
-                <input type="date" id="checkin" class="booking-bar__input" required>
+                <label for="dateRange" class="booking-bar__label">Estancia (Entrada - Salida)</label>
+                <input type="text" id="dateRange" class="booking-bar__input" placeholder="Selecciona tus fechas" readonly>
             </div>
-            <div class="booking-bar__field">
-                <label for="checkout" class="booking-bar__label">Salida</label>
-                <input type="date" id="checkout" class="booking-bar__input" required>
-            </div>
+    
             <div class="booking-bar__field">
                 <label for="guests" class="booking-bar__label">Huéspedes</label>
                 <select id="guests" class="booking-bar__select">
@@ -125,7 +127,7 @@
             <div class="experience__grid">
 
                 <div class="experience__item experience__item--large">
-                    <video src="img/instalaciones/WhatsApp Video 2026-04-08 at 9.57.13 AM.mp4" autoplay muted loop alt="Detalles de banquetes y decoración" class="experience__img">
+                    <video src="img/instalaciones/WhatsApp Video 2026-04-08 at 9.57.13 AM.mp4" autoplay muted loop alt="Detalles de banquetes y decoración" class="experience__img"></video>
                     <div class="experience__overlay">
                         <h3 class="experience__caption">Momentos Mágicos</h3>
                         <p class="experience__sub-caption">Atención al detalle</p>
@@ -209,6 +211,54 @@
                 let scrollAmount = $('.room-card').outerWidth(true);
                 track.animate({ scrollLeft: '-=' + scrollAmount }, 400);
             });
+
+            $('#btnReservaEfecto').click(function() {
+                // 1. Accedemos a la instancia de Flatpickr para obtener objetos de fecha reales
+                const fp = document.querySelector("#dateRange")._flatpickr;
+                const selectedDates = fp.selectedDates;
+                const guests = $('#guests').val();
+                const dateValue = $('#dateRange').val();
+
+                // 2. Validamos que haya seleccionado Entrada y Salida
+                if (selectedDates.length < 2) {
+                    alert("Por favor, selecciona un rango de fechas completo (Entrada y Salida).");
+                    return;
+                }
+
+                // 3. Calcular noches usando milisegundos (objetos Date puros de Flatpickr)
+                const d1 = selectedDates[0];
+                const d2 = selectedDates[1];
+                const diff = Math.abs(d2 - d1);
+                const nights = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+                // 4. Separar los strings para la URL basándonos en tu separador especial
+                const separador = "  ➔  ";
+                const partes = dateValue.split(separador);
+                const checkin = partes[0].trim();
+                const checkout = partes[1].trim();
+
+                // 5. Redirigir a la nueva página (codificando los strings para evitar errores)
+                window.location.href = `reservar.html?in=${encodeURIComponent(checkin)}&out=${encodeURIComponent(checkout)}&n=${nights}&g=${guests}`;
+            });
+
+            flatpickr("#dateRange", {
+                mode: "range",
+                minDate: "today",
+                dateFormat: "j M Y",
+                showMonths: 2,
+
+                // Forzamos el separador dentro de locale
+                locale: {
+                    ...flatpickr.l10ns.es,
+                    firstDayOfWeek: 1,
+                    rangeSeparator: "  ➔  ", 
+                },
+                // Añadimos una clase para poder darle el "paneo" en CSS
+                onReady: function(selectedDates, dateStr, instance) {
+                    $(instance.calendarContainer).addClass('quinta-calendar-style');
+                }
+            });
+
         });
     </script>
 </body>
