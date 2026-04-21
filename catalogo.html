@@ -6,6 +6,12 @@
     <title>Catálogo de Habitaciones | Quinta Dalam</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10ns/es.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/forms.css">
 </head>
 <body>
 
@@ -53,7 +59,7 @@
                         <li>Balcón con vista</li>
                         <li>Máquina de café</li>
                     </ul>
-                    <button class="btn btn--primary">Reservar Fechas</button>
+                    <button class="btn btn--primary" onclick="abrirReservaRapida('Suite Tzintzuntzan', 1500)">Reservar Fechas</button>
                 </div>
             </article>
 
@@ -71,7 +77,7 @@
                         <li>Chimenea artesanal</li>
                         <li> Minibar incluido</li>
                     </ul>
-                    <button class="btn btn--primary">Reservar Fechas</button>
+                    <button class="btn btn--primary" onclick="abrirReservaRapida('Dormitorio Morelia', 2200)">Reservar Fechas</button>
                 </div>
             </article>
 
@@ -89,7 +95,7 @@
                         <li>Cama Queen Size</li>
                         <li>Fogatero exterior</li>
                     </ul>
-                    <button class="btn btn--primary">Reservar Fechas</button>
+                    <button class="btn btn--primary" onclick="abrirReservaRapida('Cabaña Zirahuén', 2200)">Reservar Fechas</button>
                 </div>
             </article>
 
@@ -107,7 +113,7 @@
                         <li>Silla mecedora</li>
                         <li>Dulces típicos</li>
                     </ul>
-                    <button class="btn btn--primary">Reservar Fechas</button>
+                    <button class="btn btn--primary" onclick="abrirReservaRapida('Habitaicón Paracho', 2200)">Reservar Fechas</button>
                 </div>
             </article>
 
@@ -125,7 +131,7 @@
                         <li>Tina de cobre</li>
                         <li>Smart TV 55"</li>
                     </ul>
-                    <button class="btn btn--primary">Reservar Fechas</button>
+                    <button class="btn btn--primary" onclick="abrirReservaRapida('Suite Pátzcuaro', 2200)">Reservar Fechas</button>
                 </div>
             </article>
 
@@ -143,7 +149,7 @@
                         <li>2 Camas Matrimoniales</li>
                         <li>Ducha de lluvia</li>
                     </ul>
-                    <button class="btn btn--primary">Reservar Fechas</button>
+                    <button class="btn btn--primary" onclick="abrirReservaRapida('Habitación Uruapan', 2200)">Reservar Fechas</button>
                 </div>
             </article>
 
@@ -194,5 +200,99 @@
             });
         });
     </script>
+
+    <script>
+        function abrirReservaRapida(nombreHabitacion, precioBase) {
+            
+            Swal.fire({
+                title: `<span style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.8rem;">${nombreHabitacion}</span>`,
+                // ... dentro de abrirReservaRapida ...
+            html: `
+                <div style="text-align: left; margin-top: 15px; font-family: var(--font-body);">
+                    <div style="background: #fdfaf0; border-left: 4px solid var(--color-accent); padding: 12px; margin-bottom: 25px; border-radius: 4px;">
+                        <i class="fas fa-tag" style="color: var(--color-accent); font-size: 1.2rem;"></i> 
+                        <strong style="color: var(--color-primary);">¡Oferta de Temporada!</strong>
+                        <p style="font-size: 0.85rem; margin: 5px 0 0; color: #555;">Reserva hoy y obtén un 15% de descuento aplicado en tu ticket final.</p>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label class="form__label">Periodo de Estancia</label>
+                        <div class="form__input-wrapper">
+                            <i class="far fa-calendar-alt form__input-icon"></i>
+                            <input type="text" id="modalRangoFechas" class="form__input" placeholder="Selecciona entrada y salida" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form__group" style="margin-top: 15px;">
+                        <label class="form__label">Número de Huéspedes</label>
+                        <div class="form__input-wrapper">
+                            <i class="fas fa-users form__input-icon"></i>
+                            <select id="modalHuespedes" class="form__select">
+                                <option value="1">1 Adulto</option>
+                                <option value="2" selected>2 Adultos</option>
+                                <option value="3">3 Adultos</option>
+                                <option value="4">4+ Familia</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            `,
+                showCancelButton: true,
+                // ¡Aquí está la magia para los botones bonitos!
+                buttonsStyling: false, 
+                customClass: {
+                    confirmButton: 'btn btn--primary',
+                    cancelButton: 'btn',
+                    actions: 'swal-actions-gap' // Una clase extra para separarlos
+                },
+                confirmButtonText: 'Ver Disponibilidad y Pagar',
+                cancelButtonText: 'Cancelar',
+                width: '500px',
+                didOpen: () => {
+                    // Forzamos a Flatpickr a usar " a " para que no haya fallas con el "to"
+                    flatpickr("#modalRangoFechas", {
+                        mode: "range",
+                        minDate: "today",
+                        dateFormat: "Y-m-d",
+                        locale: {
+                            ...flatpickr.l10ns.es,
+                            rangeSeparator: " a "
+                        }
+                    });
+
+                    // Pequeño truco de CSS inyectado para separar los botones
+                    const actions = document.querySelector('.swal-actions-gap');
+                    if(actions) actions.style.gap = '15px';
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const inputFechas = document.getElementById('modalRangoFechas').value;
+                    const huespedes = document.getElementById('modalHuespedes').value;
+                    
+                    // Ahora estamos 100% seguros de que el separador será " a " o " to "
+                    let fechasSeparadas = inputFechas.split(' a ');
+                    if (fechasSeparadas.length !== 2) {
+                        fechasSeparadas = inputFechas.split(' to '); // Plan B por si acaso
+                    }
+                    
+                    if(fechasSeparadas.length === 2) {
+                        const checkin = fechasSeparadas[0].trim();
+                        const checkout = fechasSeparadas[1].trim();
+                        
+                        // Redirigimos al módulo de reservas
+                        window.location.href = `reservar.html?in=${checkin}&out=${checkout}&g=${huespedes}`;
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Fechas incompletas',
+                            text: 'Por favor selecciona tanto tu fecha de llegada como la de salida.',
+                            confirmButtonColor: '#2e4029'
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
