@@ -248,6 +248,14 @@
                     const textIn = fp.formatDate(dateIn, "j M Y");
                     const textOut = fp.formatDate(dateOut, "j M Y");
                     $('#dateRange').val(textIn + miSeparador + textOut);
+
+                    // SOLUCIÓN BUG (No calcula las noches si reservo desde el catálogo): Calculamos las noches inmediatamente al cargar la página
+                    const diff = Math.abs(dateOut - dateIn);
+                    const nights = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                    
+                    // Aseguramos que sea al menos 1 noche, y lo pintamos en el círculo de arriba
+                    $('#labelNoches').text(nights > 0 ? nights : 1);
+                    
                 } else {
                     // Si por alguna razón lo de arriba falla, el plan B (tu código original)
                     fp.setDate([checkin, checkout]);
